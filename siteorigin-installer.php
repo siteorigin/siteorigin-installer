@@ -71,14 +71,14 @@ if( !class_exists('SiteOrigin_Installer') ) {
 				'menu'         => 'tgmpa-install-plugins',
 				'parent_slug'  => 'siteorigin-installer',
 				'capability'   => 'activate_plugins',
-				'has_notices'  => true,
+				'has_notices'  => false,
 				'dismissable'  => true,
 				'dismiss_msg'  => '',
 				'is_automatic' => true,
 				'message'      => '',
 				'strings' => array(
 					'page_title' => __('SiteOrigin Recommended Plugins', 'siteorigin-installer'),
-					'menu_title' => __('SiteOrigin Plugins', 'siteorigin-installer'),
+					'menu_title' => __('Plugins', 'siteorigin-installer'),
 				)
 			);
 
@@ -119,6 +119,83 @@ if( !class_exists('SiteOrigin_Installer') ) {
 			);
 
 			return $themes;
+		}
+
+		/**
+		 * Get the latest version of the theme
+		 *
+		 * @param $slug
+		 *
+		 * @return bool|mixed
+		 */
+		function get_theme_version( $slug ){
+			if( !class_exists('DOMDocument') ) return false;
+
+			// Lets make sure we're requesting the latest version
+			$response = wp_remote_get( 'https://themes.svn.wordpress.org/' . urlencode( $slug ) . '/' );
+			if( is_wp_error( $response ) ) return false;
+
+			$doc = new DOMDocument();
+			$doc->loadHTML( $response['body'] );
+			$xpath = new DOMXPath( $doc );
+
+			$versions = array();
+			foreach( $xpath->query('//body/ul/li/a') as $el ) {
+				preg_match( '/([0-9\.]+)\//', $el->getAttribute('href') , $matches);
+				if( empty($matches[1]) || $matches[1] == '..' ) continue;
+				$versions[] = $matches[1];
+			}
+
+			if( empty($versions) ) return false;
+
+			usort($versions, 'version_compare');
+			$latest_version = end( $versions );
+
+			return $latest_version;
+		}
+
+		/**
+		 * Get the URL we'd need to enter to switch a theme
+		 *
+		 * @param $slug
+		 *
+		 * @return string
+		 */
+		function get_activation_url( $slug ){
+			return wp_nonce_url( self_admin_url('themes.php?action=activate&stylesheet='.$slug), 'switch-theme_'.$slug);
+		}
+
+		/**
+		 * @param string $slug The theme slug
+		 * @param string $version The version string
+		 *
+		 * @return bool|array
+		 */
+		function get_theme_data( $slug, $version ){
+			$url = 'https://themes.svn.wordpress.org/' . urlencode($slug) . '/' . urlencode( $version ) . '/style.css';
+
+			// Lets make sure we're requesting the latest version
+			$response = wp_remote_get( $url );
+			if( is_wp_error( $response ) ) return false;
+
+			$body = substr( $response['body'], 0, 8192 );
+
+			$fields = array(
+				'name' => 'Theme Name',
+				'description' => 'Description',
+				'tags' => 'Tags',
+				'author' => 'Author',
+				'author_uri' => 'Author URI',
+			);
+
+			foreach( $fields as $field => $regex ) {
+				if ( preg_match( '/^[ \t\/*#@]*' . preg_quote( $regex, '/' ) . ':(.*)$/mi', $body, $match ) && $match[1] )
+					$all_headers[ $field ] = strip_tags( _cleanup_header_comment( $match[1] ) );
+				else
+					$all_headers[ $field ] = '';
+			}
+
+			return $all_headers;
 		}
 
 	}

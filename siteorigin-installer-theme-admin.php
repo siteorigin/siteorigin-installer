@@ -7,6 +7,7 @@ if( !class_exists('SiteOrigin_Installer_Theme_Admin') ) {
 			add_action( 'admin_menu', array( $this, 'add_admin_page' ) );
 			add_action( 'admin_menu', array( $this, 'add_admin_sub_page' ), 15 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 15 );
+			add_action( 'wp_ajax_so_installer_theme_headers', array( $this, 'theme_headers_action' ) );
 		}
 
 		static function single(){
@@ -51,6 +52,7 @@ if( !class_exists('SiteOrigin_Installer_Theme_Admin') ) {
 		function enqueue_scripts( $prefix ){
 			if( $prefix !== 'installer_page_siteorigin-themes-installer' ) return;
 			wp_enqueue_style( 'siteorigin-installer-themes', plugin_dir_url(__FILE__) . '/css/themes.css', array( ), SITEORIGIN_INSTALLER_VERSION );
+			wp_enqueue_script( 'siteorigin-installer-themes', plugin_dir_url(__FILE__) . '/js/themes.js', array( 'jquery' ), SITEORIGIN_INSTALLER_VERSION );
 		}
 
 		/**
@@ -72,7 +74,7 @@ if( !class_exists('SiteOrigin_Installer_Theme_Admin') ) {
 			foreach( $themes as $slug => $theme ) {
 				if( !empty( $latest_versions[$slug] ) ) continue;
 
-				$version = $this->get_theme_version( $slug );
+				$version = SiteOrigin_Installer::single()->get_theme_version( $slug );
 				if( $version === false ) continue;
 
 				$latest_versions[$slug] = $version;
@@ -98,11 +100,22 @@ if( !class_exists('SiteOrigin_Installer_Theme_Admin') ) {
 			include plugin_dir_path( __FILE__ ) . '/tpl/themes.php';
 		}
 
+		/**
+		 * Comparison function for sorting
+		 *
+		 * @param $a
+		 * @param $b
+		 *
+		 * @return int
+		 */
 		function sort_theme_compare( $a, $b ){
 			if( empty($a['weight']) || empty($b['weight']) ) return 0;
 			return $a['weight'] < $b['weight'] ? 1 : -1;
 		}
 
+		/**
+		 * Display the plugin install page
+		 */
 		function display_install_page(){
 			check_admin_referer( 'siteorigin-install-theme' );
 			require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php'; // Need for upgrade classes
@@ -134,43 +147,15 @@ if( !class_exists('SiteOrigin_Installer_Theme_Admin') ) {
 			<?php
 		}
 
-		/**
-		 * Get the latest version of the theme
-		 *
-		 * @param $slug
-		 *
-		 * @return bool|mixed
-		 */
-		function get_theme_version( $slug ){
-			if( !class_exists('DOMDocument') ) return false;
+		function theme_headers_action(){
+			if( empty($_GET['_sononce']) || !wp_verify_nonce( $_GET['_sononce'], 'theme_info' ) ) exit();
+			if( empty( $_GET['theme_slug'] ) || empty( $_GET['theme_version'] ) ) exit();
 
-			// Lets make sure we're requesting the latest version
-			$response = wp_remote_get( 'https://themes.svn.wordpress.org/' . $slug . '/' );
-			if( is_wp_error( $response ) ) return false;
-
-			$doc = new DOMDocument();
-			$doc->loadHTML( $response['body'] );
-			$xpath = new DOMXPath( $doc );
-
-			$versions = array();
-			foreach( $xpath->query('//body/ul/li/a') as $el ) {
-				preg_match( '/([0-9\.]+)\//', $el->getAttribute('href') , $matches);
-				if( empty($matches[1]) || $matches[1] == '..' ) continue;
-				$versions[] = $matches[1];
-			}
-
-			if( empty($versions) ) return false;
-
-			usort($versions, 'version_compare');
-			$latest_version = end( $versions );
-
-			return $latest_version;
+			// header('content-type: application/json');
+			$data = SiteOrigin_Installer::single()->get_theme_data( $_GET['theme_slug'], $_GET['theme_version'] );
+			echo json_encode( $data );
+			exit();
 		}
-
-		function get_activation_url( $slug ){
-			return wp_nonce_url( self_admin_url('themes.php?action=activate&stylesheet='.$slug), 'switch-theme_'.$slug);
-		}
-
 	}
 }
 SiteOrigin_Installer_Theme_Admin::single();

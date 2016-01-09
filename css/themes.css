@@ -49,3 +49,69 @@
     content: "";
     display: table;
     clear: both; }
+#siteorigin-installer-themes .demo-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999999;
+  background: #fff center center no-repeat; }
+  #siteorigin-installer-themes .demo-modal.loading {
+    background-image: url("../img/spinner.gif"); }
+  #siteorigin-installer-themes .demo-modal .demo-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    background-color: #f9f9f9;
+    border-right: 2px solid #d0d0d0; }
+    #siteorigin-installer-themes .demo-modal .demo-sidebar .top-toolbar {
+      box-sizing: border-box;
+      width: 100%;
+      background: #eeeeee;
+      border-bottom: 1px solid #d0d0d0; }
+      #siteorigin-installer-themes .demo-modal .demo-sidebar .top-toolbar .close {
+        box-sizing: border-box;
+        border-right: 1px solid #d0d0d0;
+        height: 48px;
+        width: 48px;
+        padding: 11px 8px;
+        cursor: pointer; }
+        #siteorigin-installer-themes .demo-modal .demo-sidebar .top-toolbar .close .dashicons {
+          font-size: 30px; }
+        #siteorigin-installer-themes .demo-modal .demo-sidebar .top-toolbar .close:hover {
+          background: #f3f3f3; }
+      #siteorigin-installer-themes .demo-modal .demo-sidebar .top-toolbar .action-buttons {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 11px; }
+    #siteorigin-installer-themes .demo-modal .demo-sidebar .theme-info {
+      padding: 20px; }
+      #siteorigin-installer-themes .demo-modal .demo-sidebar .theme-info .theme-name {
+        margin-top: 0;
+        margin-bottom: 10px; }
+      #siteorigin-installer-themes .demo-modal .demo-sidebar .theme-info .theme-screenshot {
+        border: 1px solid #d0d0d0;
+        margin: 20px 0; }
+        #siteorigin-installer-themes .demo-modal .demo-sidebar .theme-info .theme-screenshot img {
+          max-width: 100%;
+          height: auto; }
+      #siteorigin-installer-themes .demo-modal .demo-sidebar .theme-info .theme-description {
+        color: #777;
+        font-size: 0.95em; }
+  #siteorigin-installer-themes .demo-modal .demo-iframe {
+    position: fixed;
+    top: 0;
+    left: 302px;
+    right: 0;
+    bottom: 0;
+    background: #fff no-repeat center center; }
+    #siteorigin-installer-themes .demo-modal .demo-iframe.loading {
+      background-image: url("../img/spinner.gif"); }
+    #siteorigin-installer-themes .demo-modal .demo-iframe iframe {
+      width: 100%;
+      height: 100%; }
