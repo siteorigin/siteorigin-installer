@@ -40,7 +40,42 @@ class SiteOrigin_Installer {
 	 * Register all the plugins
 	 */
 	function register_plugins(  ){
+		$plugins = array(
+			array(
+				'name'      => 'SiteOrigin Page Builder',
+				'slug'      => 'siteorigin-panels',
+				'required'  => false,
+			),
+			array(
+				'name'      => 'SiteOrigin Widgets Bundle',
+				'slug'      => 'so-widgets-bundle',
+				'required'  => false,
+			),
+			array(
+				'name'      => 'SiteOrigin CSS',
+				'slug'      => 'so-css',
+				'required'  => false,
+			)
+		);
 
+		$config = array(
+			'id'           => 'tgmpa',
+			'default_path' => '',
+			'menu'         => 'tgmpa-install-plugins',
+			'parent_slug'  => 'plugins.php',
+			'capability'   => 'activate_plugins',
+			'has_notices'  => true,
+			'dismissable'  => true,
+			'dismiss_msg'  => '',
+			'is_automatic' => true,
+			'message'      => '',
+			'strings' => array(
+				'page_title' => __('SiteOrigin Recommended Plugins', 'siteorigin-installer'),
+				'menu_title' => __('SiteOrigin Plugins', 'siteorigin-installer'),
+			)
+		);
+
+		tgmpa( $plugins, $config );
 	}
 
 	/**
