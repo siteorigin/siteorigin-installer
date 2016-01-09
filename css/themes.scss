@@ -16,6 +16,18 @@
 			width: 33.33333%;
 			box-sizing: border-box;
 
+			@media (max-width: 960px) {
+				& {
+					width: 50%;
+				}
+			}
+
+			@media (min-width: 1560px) {
+				& {
+					width: 25%;
+				}
+			}
+
 			.theme {
 				border: 1px solid #dedede;
 				background-color: #fff;
@@ -94,6 +106,13 @@
 
 		&.loading {
 			background-image: url("../img/spinner.gif");
+			
+			@media  (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+				& {
+					background-image: url("../img/spinner-2x.gif");
+					background-size: 20px 20px;
+				}
+			}
 		}
 
 		.demo-sidebar {
@@ -172,6 +191,12 @@
 			background: #fff no-repeat center center;
 			&.loading {
 				background-image: url("../img/spinner.gif");
+				@media  (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+					& {
+						background-image: url("../img/spinner-2x.gif");
+						background-size: 20px 20px;
+					}
+				}
 			}
 
 			iframe {
