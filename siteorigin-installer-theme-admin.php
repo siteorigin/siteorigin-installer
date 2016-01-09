@@ -28,7 +28,8 @@ if( !class_exists('SiteOrigin_Installer_Theme_Admin') ) {
 				false,
 				'siteorigin-installer',
 				false,
-				'dashicons-download',
+				//'dashicons-download',
+				plugin_dir_url(__FILE__) . '/img/icon.png',
 				66
 			);
 		}
