@@ -48,12 +48,6 @@ class SiteOrigin_Installer {
 	 */
 	function register_themes( $themes ){
 
-		$themes['bone'] = array(
-			'name' => __('Bone', 'siteorigin-installer'),
-			'demo' => 'https://demo.siteorigin.com/bone/',
-			'weight' => 100,
-		);
-
 		$themes['siteorigin-north'] = array(
 			'name' => __('SiteOrigin North', 'siteorigin-installer'),
 			'demo' => 'https://demo.siteorigin.com/north/',
@@ -78,12 +72,6 @@ class SiteOrigin_Installer {
 			'name' => __('Focus', 'siteorigin-installer'),
 			'demo' => 'https://demo.siteorigin.com/focus/',
 			'weight' => 80,
-		);
-
-		$themes['twentytwelve'] = array(
-			'name' => __('Twenty Twelve', 'siteorigin-installer'),
-			'demo' => 'https://wp-themes.com/twentytwelve/',
-			'weight' => 50,
 		);
 
 		return $themes;
