@@ -23,8 +23,9 @@
 
 					<?php
 					if( ! $theme->errors() ) {
-						$message = $theme->get_stylesheet() == $current_theme->get_stylesheet() ? __('Activated', 'siteorigin-north') : __('Installed', 'siteorigin-north');
-						?><div class="status"><?php echo esc_html( $message ) ?></div><?php
+						$theme_activated = $theme->get_stylesheet() == $current_theme->get_stylesheet();
+						$message = $theme_activated ? __('Activated', 'siteorigin-north') : __('Installed', 'siteorigin-north');
+						?><div class="status <?php echo $theme_activated ? 'status-theme-activated' : '' ?>"><?php echo esc_html( $message ) ?></div><?php
 					}
 					?>
 

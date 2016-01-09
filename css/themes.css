@@ -20,6 +20,8 @@
         top: 0;
         left: 0;
         right: 0; }
+        #siteorigin-installer-themes .siteorigin-themes .theme-wrapper .theme .status.status-theme-activated {
+          background: #027fb4; }
       #siteorigin-installer-themes .siteorigin-themes .theme-wrapper .theme .screenshot {
         background-size: cover;
         background-position: center top; }

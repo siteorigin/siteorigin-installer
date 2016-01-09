@@ -29,6 +29,10 @@
 					top: 0;
 					left: 0;
 					right: 0;
+
+					&.status-theme-activated {
+						background: #027fb4;
+					}
 				}
 
 				.screenshot {

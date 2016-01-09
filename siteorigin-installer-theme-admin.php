@@ -69,9 +69,23 @@ class SiteOrigin_Installer_Theme_Admin {
 			set_transient( 'siteorigin_installer_theme_versions', $latest_versions, 43200 );
 		}
 
+		// We need to know the current theme
 		$current_theme = wp_get_theme();
 
+		// Increase the current themes weight
+		foreach( $themes as $slug => $theme ) {
+			if( $slug == $current_theme->get_stylesheet() ) $themes[$slug]['weight'] = 999;
+		}
+
+		// Sort the themes by weight
+		uasort( $themes, array( $this, 'sort_theme_compare' ) );
+
 		include plugin_dir_path( __FILE__ ) . '/tpl/themes.php';
+	}
+
+	function sort_theme_compare( $a, $b ){
+		if( empty($a['weight']) || empty($b['weight']) ) return 0;
+		return $a['weight'] < $b['weight'] ? 1 : -1;
 	}
 
 	function display_install_page(){

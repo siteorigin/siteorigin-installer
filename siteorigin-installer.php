@@ -59,7 +59,7 @@ class SiteOrigin_Installer {
 			'name' => __('Vantage', 'siteorigin-installer'),
 			'demo' => 'https://demo.siteorigin.com/vantage/',
 			'screenshot' => 'https://ts.w.org/wp-content/themes/vantage/screenshot.jpg',
-			'weight' => 80,
+			'weight' => 220,
 		);
 
 		$themes['origami'] = array(
