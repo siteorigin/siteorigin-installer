@@ -49,7 +49,7 @@ class SiteOrigin_Installer_Theme_Admin {
 			return;
 		}
 
-		$themes = apply_filters( 'siteorigin_installer_themes', array() );
+		$themes = SiteOrigin_Installer::single()->registered_themes();
 		$latest_versions = get_transient( 'siteorigin_installer_theme_versions' );
 		if( empty($latest_versions) ) $latest_versions = array();
 		$updated = false;

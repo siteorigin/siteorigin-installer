@@ -81,7 +81,9 @@ class SiteOrigin_Installer {
 	/**
 	 * Register themes that are available to install
 	 */
-	function register_themes( $themes ){
+	function registered_themes( ){
+
+		$themes = array();
 
 		$themes['siteorigin-north'] = array(
 			'name' => __('SiteOrigin North', 'siteorigin-installer'),
