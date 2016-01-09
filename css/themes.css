@@ -1,0 +1,46 @@
+#siteorigin-installer-themes .siteorigin-themes {
+  margin: 20px -20px 0 -20px; }
+  #siteorigin-installer-themes .siteorigin-themes .theme-wrapper {
+    padding: 0 20px 30px 20px;
+    float: left;
+    width: 33.33333%;
+    box-sizing: border-box; }
+    #siteorigin-installer-themes .siteorigin-themes .theme-wrapper .theme {
+      border: 1px solid #dedede;
+      background-color: #fff;
+      position: relative; }
+      #siteorigin-installer-themes .siteorigin-themes .theme-wrapper .theme .status {
+        background: rgba(0, 0, 0, 0.9);
+        color: #fff;
+        padding: 15px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0; }
+      #siteorigin-installer-themes .siteorigin-themes .theme-wrapper .theme .screenshot {
+        background-size: cover;
+        background-position: center top; }
+        #siteorigin-installer-themes .siteorigin-themes .theme-wrapper .theme .screenshot img {
+          width: 100%;
+          height: auto; }
+      #siteorigin-installer-themes .siteorigin-themes .theme-wrapper .theme .footer {
+        padding: 15px;
+        border-top: 1px solid #dedede;
+        background: #fafafa;
+        position: relative; }
+        #siteorigin-installer-themes .siteorigin-themes .theme-wrapper .theme .footer h3 {
+          margin: 0; }
+        #siteorigin-installer-themes .siteorigin-themes .theme-wrapper .theme .footer .buttons {
+          position: absolute;
+          top: 0;
+          right: 0;
+          background: #f5f5f5;
+          border-left: 1px solid #dedede;
+          height: 100%;
+          padding: 0 15px; }
+          #siteorigin-installer-themes .siteorigin-themes .theme-wrapper .theme .footer .buttons a {
+            margin-top: 10px; }
+  #siteorigin-installer-themes .siteorigin-themes:after {
+    content: "";
+    display: table;
+    clear: both; }
