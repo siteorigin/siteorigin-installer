@@ -4,8 +4,9 @@ if( !class_exists('SiteOrigin_Installer_Theme_Admin') ) {
 	class SiteOrigin_Installer_Theme_Admin {
 
 		function __construct(){
-			add_action( 'admin_menu', array( $this, 'add_admin_page' ), 15, 2 );
-			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 15, 2 );
+			add_action( 'admin_menu', array( $this, 'add_admin_page' ) );
+			add_action( 'admin_menu', array( $this, 'add_admin_sub_page' ), 15 );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 15 );
 		}
 
 		static function single(){
@@ -21,7 +22,20 @@ if( !class_exists('SiteOrigin_Installer_Theme_Admin') ) {
 		 * Add the theme admin page
 		 */
 		function add_admin_page(){
-			add_theme_page(
+			add_menu_page(
+				__('SiteOrigin Installer', 'siteorigin-installer'),
+				__('Installer', 'siteorigin-installer'),
+				false,
+				'siteorigin-installer',
+				false,
+				'dashicons-download',
+				66
+			);
+		}
+
+		function add_admin_sub_page(){
+			add_submenu_page(
+				'siteorigin-installer',
 				__('SiteOrigin Themes', 'siteorigin-installer'),
 				__('SiteOrigin Themes', 'siteorigin-installer'),
 				'install_themes',
@@ -34,8 +48,7 @@ if( !class_exists('SiteOrigin_Installer_Theme_Admin') ) {
 		 * @param $prefix
 		 */
 		function enqueue_scripts( $prefix ){
-			if( $prefix !== 'appearance_page_siteorigin-themes-installer' ) return;
-			wp_enqueue_script( 'siteorigin-installer-themes', plugin_dir_url(__FILE__) . '/js/themes.js', array( 'jquery' ), SITEORIGIN_INSTALLER_VERSION );
+			if( $prefix !== 'installer_page_siteorigin-themes-installer' ) return;
 			wp_enqueue_style( 'siteorigin-installer-themes', plugin_dir_url(__FILE__) . '/css/themes.css', array( ), SITEORIGIN_INSTALLER_VERSION );
 		}
 

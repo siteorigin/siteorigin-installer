@@ -69,7 +69,7 @@ if( !class_exists('SiteOrigin_Installer') ) {
 				'id'           => 'tgmpa',
 				'default_path' => '',
 				'menu'         => 'tgmpa-install-plugins',
-				'parent_slug'  => 'plugins.php',
+				'parent_slug'  => 'siteorigin-installer',
 				'capability'   => 'activate_plugins',
 				'has_notices'  => true,
 				'dismissable'  => true,
