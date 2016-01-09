@@ -8,7 +8,6 @@ Author URI: https://siteorigin.com
 Version: dev
 License: GNU General Public License v3.0
 License URI: http://www.opensource.org/licenses/gpl-license.php
-GitHub Plugin URI: afragen/github-updater
 */
 
 if( !defined( 'SITEORIGIN_INSTALLER_VERSION' ) ) {
