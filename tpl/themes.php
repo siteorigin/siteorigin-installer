@@ -1,19 +1,19 @@
 <div class="wrap" id="siteorigin-installer-themes">
 	<h1>
-		<img src="" />
+		<img src="<?php echo plugin_dir_url( __FILE__ ) . '../img/siteorigin.png' ?>" width="52" height="32" />
 		<?php _e('SiteOrigin Themes', 'siteorigin-installer') ?>
 	</h1>
 
 	<div class="siteorigin-themes">
 		<?php
 		foreach ( $themes as $slug => $theme_data ) {
-			if( empty($latest_versions[$slug]) ) continue;
+			if( empty( $latest_versions[$slug] ) ) continue;
 
 			$theme = wp_get_theme( $slug );
 			$version = $latest_versions[$slug];
 			$install_url = add_query_arg( array(
 				'install_theme' => $slug,
-				'version' => $latest_versions[$slug]
+				'theme_version' => $latest_versions[$slug],
 			) );
 			$screenshot = !empty( $theme_data['screenshot'] ) ? $theme_data['screenshot'] : 'https://themes.svn.wordpress.org/' . $slug . '/' . $version . '/screenshot.png'
 
@@ -37,10 +37,10 @@
 						<div class="buttons">
 							<?php if( $theme->errors() ) : ?>
 								<a href="<?php echo wp_nonce_url( $install_url, 'siteorigin-install-theme' ) ?>" class="button-secondary"><?php _e( 'Install', 'siteorigin-installer' ) ?></a>
-							<?php else : ?>
-								<a href="<?php echo wp_nonce_url( add_query_arg( 'activate', $slug ), 'siteorigin-activate-theme' ) ?>" class="button-secondary"><?php _e( 'Activate', 'siteorigin-installer' ) ?></a>
+							<?php elseif( $theme->get_stylesheet() != $current_theme->get_stylesheet() ) : ?>
+								<a href="<?php echo SiteOrigin_Installer_Theme_Admin::single()->get_activation_url( $slug ) ?>" class="button-secondary"><?php _e( 'Activate', 'siteorigin-installer' ) ?></a>
 							<?php endif ?>
-							<a href="<?php echo esc_url( $theme_data['demo'] ) ?>" class="button-primary"><?php _e( 'Demo', 'siteorigin-installer' ) ?></a>
+							<a href="<?php echo esc_url( $theme_data['demo'] ) ?>" target="_blank" class="button-primary siteorigin-demo"><?php _e( 'Demo', 'siteorigin-installer' ) ?></a>
 						</div>
 					</div>
 

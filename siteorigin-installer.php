@@ -13,7 +13,6 @@ License URI: http://www.opensource.org/licenses/gpl-license.php
 define('SITEORIGIN_INSTALLER_VERSION', 'dev');
 
 require_once dirname( __FILE__ ) . '/inc/class-tgm-plugin-activation.php';
-require_once dirname( __FILE__ ) . '/inc/siteorigin-installer-theme.php';
 require_once dirname( __FILE__ ) . '/siteorigin-installer-theme-admin.php';
 
 class SiteOrigin_Installer {
@@ -88,13 +87,6 @@ class SiteOrigin_Installer {
 		);
 
 		return $themes;
-	}
-
-	/**
-	 * Install a registered theme
-	 */
-	function install_theme(){
-		$themes = apply_filters( 'siteorigin_installer_themes', array() );
 	}
 
 }

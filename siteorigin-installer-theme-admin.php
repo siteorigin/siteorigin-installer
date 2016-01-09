@@ -30,11 +30,26 @@ class SiteOrigin_Installer_Theme_Admin {
 	}
 
 	/**
+	 * @param $prefix
+	 */
+	function enqueue_scripts( $prefix ){
+		if( $prefix !== 'appearance_page_siteorigin-themes-installer' ) return;
+		wp_enqueue_script( 'siteorigin-installer-themes', plugin_dir_url(__FILE__) . '/js/themes.js', array( 'jquery' ), SITEORIGIN_INSTALLER_VERSION );
+		wp_enqueue_style( 'siteorigin-installer-themes', plugin_dir_url(__FILE__) . '/css/themes.css', array( ), SITEORIGIN_INSTALLER_VERSION );
+	}
+
+	/**
 	 * Display the theme admin page
 	 */
 	function display_themes_page(){
-		$themes = apply_filters( 'siteorigin_installer_themes', array() );
 
+		if( !empty( $_GET['install_theme'] ) && !empty( $_GET['theme_version'] ) ) {
+			// The user is installing a theme
+			$this->display_install_page();
+			return;
+		}
+
+		$themes = apply_filters( 'siteorigin_installer_themes', array() );
 		$latest_versions = get_transient( 'siteorigin_installer_theme_versions' );
 		if( empty($latest_versions) ) $latest_versions = array();
 		$updated = false;
@@ -59,13 +74,35 @@ class SiteOrigin_Installer_Theme_Admin {
 		include plugin_dir_path( __FILE__ ) . '/tpl/themes.php';
 	}
 
-	/**
-	 * @param $prefix
-	 */
-	function enqueue_scripts( $prefix ){
-		if( $prefix !== 'appearance_page_siteorigin-themes-installer' ) return;
-		wp_enqueue_script( 'siteorigin-installer-themes', plugin_dir_url(__FILE__) . '/js/themes.js', array( 'jquery' ), SITEORIGIN_INSTALLER_VERSION );
-		wp_enqueue_style( 'siteorigin-installer-themes', plugin_dir_url(__FILE__) . '/css/themes.css', array( ), SITEORIGIN_INSTALLER_VERSION );
+	function display_install_page(){
+		check_admin_referer( 'siteorigin-install-theme' );
+		require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php'; // Need for upgrade classes
+
+		$slug = !empty( $_GET['install_theme'] ) ? $_GET['install_theme'] : false;
+		$version = !empty( $_GET['theme_version'] ) ? $_GET['theme_version'] : false;
+
+		if( empty($slug) || empty($version) ) {
+			wp_die( __('Error installing theme', 'siteorigin-installer') );
+		}
+
+		?>
+		<div class="wrap">
+			<?php
+			// This is where we actually install the theme
+
+			$theme_url = 'https://wordpress.org/themes/download/' . urlencode( $slug ) . '.' . urlencode( $version ) . '.zip';
+
+			$title = sprintf( __('Installing Theme: %s'), $slug . ' ' . $version );
+			$nonce = 'install-theme_' . $slug;
+			$url = 'update.php?action=install-theme&theme=' . urlencode( $slug );
+			$type = 'web'; //Install theme type, From Web or an Upload.
+
+			$upgrader = new Theme_Upgrader( new Theme_Installer_Skin( compact('title', 'url', 'nonce', 'plugin', 'api', 'type') ) );
+			$upgrader->install( $theme_url );
+
+			?>
+		</div>
+		<?php
 	}
 
 	/**
@@ -100,5 +137,10 @@ class SiteOrigin_Installer_Theme_Admin {
 
 		return $latest_version;
 	}
+
+	function get_activation_url( $slug ){
+		return wp_nonce_url( self_admin_url('themes.php?action=activate&stylesheet='.$slug), 'switch-theme_'.$slug);
+	}
+
 }
 SiteOrigin_Installer_Theme_Admin::single();
