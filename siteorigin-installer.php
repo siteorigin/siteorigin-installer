@@ -78,7 +78,7 @@ if( !class_exists('SiteOrigin_Installer') ) {
 				'message'      => '',
 				'strings' => array(
 					'page_title' => __('SiteOrigin Recommended Plugins', 'siteorigin-installer'),
-					'menu_title' => __('Plugins', 'siteorigin-installer'),
+					'menu_title' => __('Install Plugins', 'siteorigin-installer'),
 				)
 			);
 
