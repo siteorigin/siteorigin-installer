@@ -27,6 +27,7 @@ if( !class_exists('SiteOrigin_Installer') ) {
 		function __construct(){
 			add_action( 'tgmpa_register', array( $this, 'register_plugins' ) );
 			add_action( 'siteorigin_installer_themes', array( $this, 'register_themes' ) );
+			add_action( 'admin_notices', array( $this, 'admin_notice' ) );
 		}
 
 		/**
@@ -68,7 +69,7 @@ if( !class_exists('SiteOrigin_Installer') ) {
 			$config = array(
 				'id'           => 'tgmpa',
 				'default_path' => '',
-				'menu'         => 'tgmpa-install-plugins',
+				'menu'         => 'siteorigin-plugins-installer',
 				'parent_slug'  => 'siteorigin-installer',
 				'capability'   => 'activate_plugins',
 				'has_notices'  => false,
@@ -196,6 +197,28 @@ if( !class_exists('SiteOrigin_Installer') ) {
 			}
 
 			return $all_headers;
+		}
+
+		/**
+		 * Display an admin notice about next steps
+		 */
+		function admin_notice(){
+			if( ! get_option( 'siteorigin_installer_admin_notice' ) ) {
+				?>
+				<div class="updated">
+					<p>
+						<?php
+						printf(
+							__( "<strong>SiteOrigin Installer</strong> is ready. Start installing %s and %s to get your site going.", 'siteorigin-installer' ),
+							'<a href="' . admin_url( 'admin.php?page=siteorigin-themes-installer' ) . '">' . __('themes', 'siteorigin-installer') . '</a>',
+							'<a href="' . admin_url( 'admin.php?page=siteorigin-plugins-installer' ) . '">' . __('plugins', 'siteorigin-installer') . '</a>'
+						);
+						?>
+					</p>
+				</div>
+				<?php
+				add_option( 'siteorigin_installer_admin_notice', true, false );
+			}
 		}
 
 	}
