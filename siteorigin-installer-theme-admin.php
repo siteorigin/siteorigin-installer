@@ -25,12 +25,11 @@ if( !class_exists('SiteOrigin_Installer_Theme_Admin') ) {
 		function add_admin_page(){
 			add_menu_page(
 				__('SiteOrigin Installer', 'siteorigin-installer'),
-				__('Installer', 'siteorigin-installer'),
+				__('SiteOrigin', 'siteorigin-installer'),
 				false,
 				'siteorigin-installer',
 				false,
-				//'dashicons-download',
-				plugin_dir_url(__FILE__) . '/img/icon.png',
+				plugin_dir_url(__FILE__) . '/img/icon.svg',
 				66
 			);
 		}
@@ -38,8 +37,8 @@ if( !class_exists('SiteOrigin_Installer_Theme_Admin') ) {
 		function add_admin_sub_page(){
 			add_submenu_page(
 				'siteorigin-installer',
-				__('SiteOrigin Themes', 'siteorigin-installer'),
-				__('SiteOrigin Themes', 'siteorigin-installer'),
+				__('Install Themes', 'siteorigin-installer'),
+				__('Install Themes', 'siteorigin-installer'),
 				'install_themes',
 				'siteorigin-themes-installer',
 				array( $this, 'display_themes_page' )
@@ -50,7 +49,7 @@ if( !class_exists('SiteOrigin_Installer_Theme_Admin') ) {
 		 * @param $prefix
 		 */
 		function enqueue_scripts( $prefix ){
-			if( $prefix !== 'installer_page_siteorigin-themes-installer' ) return;
+			if( $prefix !== 'siteorigin_page_siteorigin-themes-installer' ) return;
 			wp_enqueue_style( 'siteorigin-installer-themes', plugin_dir_url(__FILE__) . '/css/themes.css', array( ), SITEORIGIN_INSTALLER_VERSION );
 			wp_enqueue_script( 'siteorigin-installer-themes', plugin_dir_url(__FILE__) . '/js/themes.js', array( 'jquery' ), SITEORIGIN_INSTALLER_VERSION );
 		}
