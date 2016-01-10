@@ -24,6 +24,8 @@ new WPUpdatesPluginUpdater_1419( 'http://wp-updates.com/api/2/plugin', plugin_ba
 if( !class_exists('SiteOrigin_Installer') ) {
 	class SiteOrigin_Installer {
 
+		const THEME_LIST_BRANCH = 'develop';
+
 		function __construct(){
 			add_action( 'tgmpa_register', array( $this, 'register_plugins' ) );
 			add_action( 'siteorigin_installer_themes', array( $this, 'register_themes' ) );
@@ -93,31 +95,15 @@ if( !class_exists('SiteOrigin_Installer') ) {
 
 			$themes = array();
 
-			$themes['siteorigin-north'] = array(
-				'name' => __('SiteOrigin North', 'siteorigin-installer'),
-				'demo' => 'https://demo.siteorigin.com/north/',
-				'screenshot' => 'https://ts.w.org/wp-content/themes/siteorigin-north/screenshot.jpg',
-				'weight' => 100,
-			);
+			// Try fetch the themes from GitHub
+			$response = wp_remote_get( 'https://raw.githubusercontent.com/siteorigin/siteorigin-installer/' . self::THEME_LIST_BRANCH . '/data/themes.json' );
+			if( !is_wp_error( $response ) ) {
+				@ $data = !empty( $response['body'] ) ? json_decode( $response['body'], true ) : false;
+			}
 
-			$themes['vantage'] = array(
-				'name' => __('Vantage', 'siteorigin-installer'),
-				'demo' => 'https://demo.siteorigin.com/vantage/',
-				'screenshot' => 'https://ts.w.org/wp-content/themes/vantage/screenshot.jpg',
-				'weight' => 220,
-			);
-
-			$themes['origami'] = array(
-				'name' => __('Origami', 'siteorigin-installer'),
-				'demo' => 'https://demo.siteorigin.com/origami/',
-				'weight' => 80,
-			);
-
-			$themes['focus'] = array(
-				'name' => __('Focus', 'siteorigin-installer'),
-				'demo' => 'https://demo.siteorigin.com/focus/',
-				'weight' => 80,
-			);
+			if( empty($themes) ) {
+				$themes = json_decode( file_get_contents( plugin_dir_path(__FILE__) . '/data/themes.json' ), true );
+			}
 
 			return $themes;
 		}
