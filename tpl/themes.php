@@ -1,6 +1,6 @@
 <div class="wrap" id="siteorigin-installer-themes">
 	<h1>
-		<img src="<?php echo plugin_dir_url( __FILE__ ) . '../img/siteorigin.png' ?>" width="52" height="32" />
+		<img src="<?php echo plugin_dir_url( __FILE__ ) . '../img/siteorigin.svg' ?>" class="siteorigin-logo" />
 		<?php _e('SiteOrigin Themes', 'siteorigin-installer') ?>
 	</h1>
 

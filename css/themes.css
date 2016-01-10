@@ -1,6 +1,8 @@
-#siteorigin-installer-themes h1 img {
+#siteorigin-installer-themes h1 .siteorigin-logo {
   float: left;
-  margin: -3px 5px 0 0; }
+  margin: -3px 5px 0 0;
+  width: 52px;
+  height: auto; }
 #siteorigin-installer-themes .siteorigin-themes {
   margin: 20px -20px 0 -20px; }
   #siteorigin-installer-themes .siteorigin-themes .theme-wrapper {
