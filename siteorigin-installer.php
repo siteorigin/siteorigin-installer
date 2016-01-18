@@ -203,7 +203,7 @@ if( !class_exists('SiteOrigin_Installer') ) {
 					</p>
 				</div>
 				<?php
-				add_option( 'siteorigin_installer_admin_notice', true, false );
+				add_option( 'siteorigin_installer_admin_notice', true, '', false );
 			}
 		}
 
