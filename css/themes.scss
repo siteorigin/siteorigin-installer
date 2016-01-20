@@ -1,5 +1,14 @@
 #siteorigin-installer-themes {
 
+	h1 {
+		.siteorigin-logo {
+			float: left;
+			margin: -3px 5px 0 0;
+			width: 52px;
+			height: auto;
+		}
+	}
+
 	.siteorigin-themes {
 		margin: 20px -20px 0 -20px;
 
@@ -9,19 +18,35 @@
 			width: 33.33333%;
 			box-sizing: border-box;
 
+			@media (max-width: 960px) {
+				& {
+					width: 50%;
+				}
+			}
+
+			@media (min-width: 1560px) {
+				& {
+					width: 25%;
+				}
+			}
+
 			.theme {
 				border: 1px solid #dedede;
 				background-color: #fff;
 				position: relative;
 
 				.status {
-					background: rgba(0, 0, 0, 0.9);
+					background: #393f44;
 					color: #fff;
 					padding: 15px;
 					position: absolute;
 					top: 0;
 					left: 0;
 					right: 0;
+
+					&.status-theme-activated {
+						background: #027fb4;
+					}
 				}
 
 				.screenshot {
@@ -68,6 +93,120 @@
 			display: table;
 			clear: both;
 		}
+	}
+
+	.demo-modal {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 999999;
+
+		background: #fff center center no-repeat;
+
+		&.loading {
+			background-image: url("../img/spinner.gif");
+			
+			@media  (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+				& {
+					background-image: url("../img/spinner-2x.gif");
+					background-size: 20px 20px;
+				}
+			}
+		}
+
+		.demo-sidebar {
+			position: fixed;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			width: 300px;
+			background-color: #f9f9f9;
+			border-right: 2px solid #d0d0d0;
+
+			.top-toolbar {
+				box-sizing: border-box;
+				width: 100%;
+				background: #eeeeee;
+				border-bottom: 1px solid #d0d0d0;
+
+				.close {
+					box-sizing: border-box;
+					border-right: 1px solid #d0d0d0;
+					height: 48px;
+					width: 48px;
+					padding: 11px 8px;
+					cursor: pointer;
+
+					.dashicons {
+						font-size: 30px;
+					}
+
+					&:hover {
+						background: #f3f3f3;
+					}
+				}
+
+				.action-buttons {
+					position: absolute;
+					top: 0;
+					right: 0;
+					padding: 11px;
+				}
+			}
+
+			.theme-info {
+				padding: 20px;
+
+				.theme-name {
+					margin-top: 0;
+					margin-bottom: 10px;
+				}
+
+				.theme-screenshot {
+					border: 1px solid #d0d0d0;
+					margin: 20px 0;
+
+					img {
+						max-width: 100%;
+						height: auto;
+					}
+
+				}
+
+				.theme-description {
+					color: #777;
+					font-size: 0.95em;
+				}
+			}
+		}
+
+		.demo-iframe {
+			position: fixed;
+			top: 0;
+			left: 302px;
+			right: 0;
+			bottom: 0;
+
+			background: #fff no-repeat center center;
+			&.loading {
+				background-image: url("../img/spinner.gif");
+				@media  (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+					& {
+						background-image: url("../img/spinner-2x.gif");
+						background-size: 20px 20px;
+					}
+				}
+			}
+
+			iframe {
+				width: 100%;
+				height: 100%;
+			}
+		}
+
 	}
 
 }

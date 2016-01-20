@@ -1,0 +1,23 @@
+{
+
+  "siteorigin-north" : {
+    "name" : "North",
+    "demo" : "https://demo.siteorigin.com/north/",
+    "screenshot" : "https://ts.w.org/wp-content/themes/siteorigin-north/screenshot.jpg",
+    "weight" : 100
+  },
+
+  "vantage" : {
+    "name" : "Vantage",
+    "demo" : "https://demo.siteorigin.com/vantage/",
+    "screenshot" : "https://ts.w.org/wp-content/themes/vantage/screenshot.jpg",
+    "weight" : 80
+  },
+
+  "origami" : {
+    "name" : "Origami",
+    "demo" : "https://demo.siteorigin.com/origami/",
+    "weight" : 80
+  }
+
+}

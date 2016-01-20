@@ -1,3 +1,8 @@
+#siteorigin-installer-themes h1 .siteorigin-logo {
+  float: left;
+  margin: -3px 5px 0 0;
+  width: 52px;
+  height: auto; }
 #siteorigin-installer-themes .siteorigin-themes {
   margin: 20px -20px 0 -20px; }
   #siteorigin-installer-themes .siteorigin-themes .theme-wrapper {
@@ -5,18 +10,26 @@
     float: left;
     width: 33.33333%;
     box-sizing: border-box; }
+    @media (max-width: 960px) {
+      #siteorigin-installer-themes .siteorigin-themes .theme-wrapper {
+        width: 50%; } }
+    @media (min-width: 1560px) {
+      #siteorigin-installer-themes .siteorigin-themes .theme-wrapper {
+        width: 25%; } }
     #siteorigin-installer-themes .siteorigin-themes .theme-wrapper .theme {
       border: 1px solid #dedede;
       background-color: #fff;
       position: relative; }
       #siteorigin-installer-themes .siteorigin-themes .theme-wrapper .theme .status {
-        background: rgba(0, 0, 0, 0.9);
+        background: #393f44;
         color: #fff;
         padding: 15px;
         position: absolute;
         top: 0;
         left: 0;
         right: 0; }
+        #siteorigin-installer-themes .siteorigin-themes .theme-wrapper .theme .status.status-theme-activated {
+          background: #027fb4; }
       #siteorigin-installer-themes .siteorigin-themes .theme-wrapper .theme .screenshot {
         background-size: cover;
         background-position: center top; }
@@ -44,3 +57,77 @@
     content: "";
     display: table;
     clear: both; }
+#siteorigin-installer-themes .demo-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999999;
+  background: #fff center center no-repeat; }
+  #siteorigin-installer-themes .demo-modal.loading {
+    background-image: url("../img/spinner.gif"); }
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      #siteorigin-installer-themes .demo-modal.loading {
+        background-image: url("../img/spinner-2x.gif");
+        background-size: 20px 20px; } }
+  #siteorigin-installer-themes .demo-modal .demo-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    background-color: #f9f9f9;
+    border-right: 2px solid #d0d0d0; }
+    #siteorigin-installer-themes .demo-modal .demo-sidebar .top-toolbar {
+      box-sizing: border-box;
+      width: 100%;
+      background: #eeeeee;
+      border-bottom: 1px solid #d0d0d0; }
+      #siteorigin-installer-themes .demo-modal .demo-sidebar .top-toolbar .close {
+        box-sizing: border-box;
+        border-right: 1px solid #d0d0d0;
+        height: 48px;
+        width: 48px;
+        padding: 11px 8px;
+        cursor: pointer; }
+        #siteorigin-installer-themes .demo-modal .demo-sidebar .top-toolbar .close .dashicons {
+          font-size: 30px; }
+        #siteorigin-installer-themes .demo-modal .demo-sidebar .top-toolbar .close:hover {
+          background: #f3f3f3; }
+      #siteorigin-installer-themes .demo-modal .demo-sidebar .top-toolbar .action-buttons {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 11px; }
+    #siteorigin-installer-themes .demo-modal .demo-sidebar .theme-info {
+      padding: 20px; }
+      #siteorigin-installer-themes .demo-modal .demo-sidebar .theme-info .theme-name {
+        margin-top: 0;
+        margin-bottom: 10px; }
+      #siteorigin-installer-themes .demo-modal .demo-sidebar .theme-info .theme-screenshot {
+        border: 1px solid #d0d0d0;
+        margin: 20px 0; }
+        #siteorigin-installer-themes .demo-modal .demo-sidebar .theme-info .theme-screenshot img {
+          max-width: 100%;
+          height: auto; }
+      #siteorigin-installer-themes .demo-modal .demo-sidebar .theme-info .theme-description {
+        color: #777;
+        font-size: 0.95em; }
+  #siteorigin-installer-themes .demo-modal .demo-iframe {
+    position: fixed;
+    top: 0;
+    left: 302px;
+    right: 0;
+    bottom: 0;
+    background: #fff no-repeat center center; }
+    #siteorigin-installer-themes .demo-modal .demo-iframe.loading {
+      background-image: url("../img/spinner.gif"); }
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        #siteorigin-installer-themes .demo-modal .demo-iframe.loading {
+          background-image: url("../img/spinner-2x.gif");
+          background-size: 20px 20px; } }
+    #siteorigin-installer-themes .demo-modal .demo-iframe iframe {
+      width: 100%;
+      height: 100%; }

@@ -1,21 +1,44 @@
 jQuery( function($){
+    $('.siteorigin-themes .theme .siteorigin-demo').click( function( e ){
+        e.preventDefault();
 
-    $('.siteorigin-themes .theme').each( function(){
         var $$ = $(this),
-            slug = $$.data('slug');
+            $theme = $$.closest('.theme'),
+            $modal = $('.demo-modal');
 
-        //$.get('https://themes.svn.wordpress.org/' + slug + '/', function(data){
-        //} );
+        // Show the modal loading
+        $modal.show().addClass('loading');
+        $modal.find('.demo-sidebar, .demo-iframe').hide();
 
-        // Start by attempting to load the image from standard WordPress.org
-        var img = new Image();
-        img.onload = function(){
-            console.log('GOOD IMAGE');
-        };
-        img.onerror = function(){
-            console.log('BAD IMAGE');
-        };
-        img.src = '//ts.w.org/wp-content/themes/' + slug + '/screenshot.png';
+        $.getJSON(
+            $('.demo-modal .theme-info').data('info-url'),
+            {
+                'theme_slug' : $theme.data('slug'),
+                'theme_version' : $theme.data('version')
+            },
+            function(data){
+                $modal.find('.theme-name').html( data.name );
+                $modal.find('.theme-author').html( data.author );
+                $modal.find('.theme-description').html( data.description );
+                $modal.find('.theme-screenshot img').attr( 'src', $theme.find('.screenshot').data('screenshot') );
+                $modal.find( '.action-buttons').empty().append(
+                    $theme.find('.buttons').clone()
+                );
+                $modal.find( '.action-buttons .siteorigin-demo').remove();
+
+                $modal.find('.demo-iframe iframe').attr( 'src', $$.attr( 'href' )).hide().load( function(){
+                    $modal.find('.demo-iframe').removeClass('loading');
+                    $(this).show();
+                } );
+                $modal.find('.demo-iframe').addClass('loading');
+
+                $modal.removeClass('loading');
+                $modal.find('.demo-sidebar, .demo-iframe').show();
+            }
+        );
     } );
 
+    $('.demo-modal .top-toolbar .close').click( function(){
+        $('.demo-modal').hide();
+    } );
 } );
