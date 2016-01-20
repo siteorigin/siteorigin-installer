@@ -18,8 +18,8 @@ require_once dirname( __FILE__ ) . '/inc/class-tgm-plugin-activation.php';
 require_once dirname( __FILE__ ) . '/siteorigin-installer-theme-admin.php';
 
 // Add WP Updates
-require_once dirname( __FILE__ ) . '/inc/wp-updates-plugin.php';
-new WPUpdatesPluginUpdater_1419( 'http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__));
+require_once dirname( __FILE__ ) . '/inc/github-plugin-updater.php';
+new SiteOrigin_Installer_GitHub_Updater( __FILE__ );
 
 if( !class_exists('SiteOrigin_Installer') ) {
 	class SiteOrigin_Installer {
