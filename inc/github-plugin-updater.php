@@ -3,7 +3,7 @@
 class SiteOrigin_Installer_GitHub_Updater {
 
 	private $file;
-	const UPDATES_BRANCH = 'develop';
+	const UPDATES_BRANCH = 'master';
 
 	function __construct( $file ){
 		$this->file = $file;
@@ -65,11 +65,37 @@ class SiteOrigin_Installer_GitHub_Updater {
 				$all_headers[ $field ] = '';
 		}
 
-		$all_headers['Version'] = '2.0';
-
 		return $all_headers;
 	}
 
+	/**
+	 * Get and parse a markdown file from Github
+	 *
+	 * @param string $file
+	 *
+	 * @return bool|string
+	 */
+	function get_github_markdown( $file = 'readme.md' ){
+		$response = wp_remote_get( 'https://raw.githubusercontent.com/siteorigin/siteorigin-installer/' . self::UPDATES_BRANCH . '/' . urlencode( $file ) );
+		if( is_wp_error( $response ) || empty( $response['body'] ) ) return false;
+
+		if( !class_exists('Parsedown') ) {
+			require_once plugin_dir_path(__FILE__) . '/Parsedown/Parsedown.php';
+		}
+
+		$parsedown = new Parsedown();
+		return $parsedown->parse( $response['body'] );
+	}
+
+	/**
+	 * Add all the plugin details to the Plugin API call
+	 *
+	 * @param $def
+	 * @param $action
+	 * @param $args
+	 *
+	 * @return stdClass
+	 */
 	function plugin_api_call( $def, $action, $args ){
 
 		if( isset($args->slug) && $args->slug == $this->get_plugin_path() && $action == 'plugin_information' ) {
@@ -77,10 +103,15 @@ class SiteOrigin_Installer_GitHub_Updater {
 			$response = new stdClass();
 			$response->slug = $this->get_plugin_path();
 			$response->plugin_name  = $headers["Name"];
+			$response->name  = $headers["Name"];
 			$response->version = $headers['Version'];
 			$response->author = $headers["Author"];
 			$response->homepage = $headers["PluginURI"];
 			$response->download_link = 'https://github.com/siteorigin/siteorigin-installer/archive/' . self::UPDATES_BRANCH . '.zip';
+			$response->sections = array(
+				'description' => $this->get_github_markdown( 'readme.md' ),
+				'changelog' => $this->get_github_markdown( 'changelog.md' )
+			);
 
 			return $response;
 		}
