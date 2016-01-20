@@ -18,12 +18,6 @@
     "name" : "Origami",
     "demo" : "https://demo.siteorigin.com/origami/",
     "weight" : 80
-  },
-
-  "focus" : {
-    "name" : "Focus",
-    "demo" : "https://demo.siteorigin.com/focus/",
-    "weight" : 80
   }
 
 }
