@@ -11,7 +11,7 @@ License URI: http://www.opensource.org/licenses/gpl-license.php
 */
 
 if( !defined( 'SITEORIGIN_INSTALLER_VERSION' ) ) {
-	define('SITEORIGIN_INSTALLER_VERSION', '0.1');
+	define('SITEORIGIN_INSTALLER_VERSION', 'dev');
 }
 
 require_once dirname( __FILE__ ) . '/inc/class-tgm-plugin-activation.php';
