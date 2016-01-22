@@ -5,13 +5,13 @@ Plugin URI: https://github.com/siteorigin/siteorigin-installer/
 Description: This plugin installs all the SiteOrigin themes and plugins you need to get started with your new site.
 Author: SiteOrigin
 Author URI: https://siteorigin.com
-Version: 0.1
+Version: 0.1.1
 License: GNU General Public License v3.0
 License URI: http://www.opensource.org/licenses/gpl-license.php
 */
 
 if( !defined( 'SITEORIGIN_INSTALLER_VERSION' ) ) {
-	define('SITEORIGIN_INSTALLER_VERSION', '0.1');
+	define('SITEORIGIN_INSTALLER_VERSION', '0.1.1');
 }
 
 require_once dirname( __FILE__ ) . '/inc/class-tgm-plugin-activation.php';
@@ -64,6 +64,11 @@ if( !class_exists('SiteOrigin_Installer') ) {
 				array(
 					'name'      => 'SiteOrigin CSS',
 					'slug'      => 'so-css',
+					'required'  => false,
+				),
+				array(
+					'name'      => 'WooCommerce',
+					'slug'      => 'woocommerce',
 					'required'  => false,
 				)
 			);
