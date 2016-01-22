@@ -9,9 +9,9 @@ class SiteOrigin_Installer_GitHub_Updater {
 		$this->file = $file;
 
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_for_update'), 15 );
-		add_filter( 'plugins_api', array(&$this, 'plugin_api_call'), 10, 3 );
+		add_filter( 'plugins_api', array( $this, 'plugin_api_call'), 10, 3 );
 
-		// This is for testing only!
+		// This line forces an updates call
 		// set_site_transient( 'update_plugins', null );
 	}
 
