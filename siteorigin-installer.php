@@ -65,6 +65,11 @@ if( !class_exists('SiteOrigin_Installer') ) {
 					'name'      => 'SiteOrigin CSS',
 					'slug'      => 'so-css',
 					'required'  => false,
+				),
+				array(
+					'name'      => 'WooCommerce',
+					'slug'      => 'woocommerce',
+					'required'  => false,
 				)
 			);
 
