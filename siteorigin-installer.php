@@ -17,9 +17,13 @@ if( !defined( 'SITEORIGIN_INSTALLER_VERSION' ) ) {
 require_once dirname( __FILE__ ) . '/inc/class-tgm-plugin-activation.php';
 require_once dirname( __FILE__ ) . '/siteorigin-installer-theme-admin.php';
 
-// Add WP Updates
+// Setup the Github updater
 require_once dirname( __FILE__ ) . '/inc/github-plugin-updater.php';
 new SiteOrigin_Installer_GitHub_Updater( __FILE__ );
+
+if( !class_exists( 'SiteOrigin_Subversion_Theme_Updater' ) ) {
+	include plugin_dir_path( __FILE__ ) . '/inc/theme-updater.php';
+}
 
 if( !class_exists('SiteOrigin_Installer') ) {
 	class SiteOrigin_Installer {
