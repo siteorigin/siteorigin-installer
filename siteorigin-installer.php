@@ -81,7 +81,7 @@ if( !class_exists('SiteOrigin_Installer') ) {
 				'id'           => 'tgmpa',
 				'default_path' => '',
 				'menu'         => 'siteorigin-plugins-installer',
-				'parent_slug'  => 'siteorigin-installer',
+				'parent_slug'  => 'siteorigin',
 				'capability'   => 'activate_plugins',
 				'has_notices'  => false,
 				'dismissable'  => true,
