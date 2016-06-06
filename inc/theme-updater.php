@@ -22,7 +22,7 @@ if( !class_exists( 'SiteOrigin_Subversion_Theme_Updater' ) ) {
 			static $single;
 
 			if( empty($single) ) {
-				$single = new SiteOrigin_Subversion_Theme_Updater();
+				$single = new self();
 			}
 
 			return $single;
@@ -74,6 +74,5 @@ if( !class_exists( 'SiteOrigin_Subversion_Theme_Updater' ) ) {
 	}
 
 }
-
 
 SiteOrigin_Subversion_Theme_Updater::single();
