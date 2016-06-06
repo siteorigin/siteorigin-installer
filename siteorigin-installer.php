@@ -56,23 +56,18 @@ if( !class_exists('SiteOrigin_Installer') ) {
 		function register_plugins(  ){
 			$plugins = array(
 				array(
-					'name'      => 'SiteOrigin Page Builder',
+					'name'      => __( 'SiteOrigin Page Builder', 'siteorigin-installer'),
 					'slug'      => 'siteorigin-panels',
 					'required'  => false,
 				),
 				array(
-					'name'      => 'SiteOrigin Widgets Bundle',
+					'name'      => __( 'SiteOrigin Widgets Bundle', 'siteorigin-installer'),
 					'slug'      => 'so-widgets-bundle',
 					'required'  => false,
 				),
 				array(
-					'name'      => 'SiteOrigin CSS',
+					'name'      => __( 'SiteOrigin CSS', 'siteorigin-installer'),
 					'slug'      => 'so-css',
-					'required'  => false,
-				),
-				array(
-					'name'      => 'WooCommerce',
-					'slug'      => 'woocommerce',
 					'required'  => false,
 				)
 			);
