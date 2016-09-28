@@ -22,21 +22,23 @@ if( !class_exists('SiteOrigin_Installer_Theme_Admin') ) {
 		/**
 		 * Add the theme admin page
 		 */
-		function add_admin_page(){
-			add_menu_page(
-				__('SiteOrigin Installer', 'siteorigin-installer'),
-				__('SiteOrigin', 'siteorigin-installer'),
-				false,
-				'siteorigin-installer',
-				false,
-				plugin_dir_url(__FILE__) . '/img/icon.svg',
-				66
-			);
+		function add_admin_page() {
+			if ( empty ( $GLOBALS['admin_page_hooks']['siteorigin'] ) ) {
+				add_menu_page(
+					__( 'SiteOrigin', 'siteorigin-installer' ),
+					__( 'SiteOrigin', 'siteorigin-installer' ),
+					false,
+					'siteorigin',
+					false,
+					plugin_dir_url( __FILE__ ) . '/img/icon.svg',
+					66
+				);
+			}
 		}
 
 		function add_admin_sub_page(){
 			add_submenu_page(
-				'siteorigin-installer',
+				'siteorigin',
 				__('Install Themes', 'siteorigin-installer'),
 				__('Install Themes', 'siteorigin-installer'),
 				'install_themes',

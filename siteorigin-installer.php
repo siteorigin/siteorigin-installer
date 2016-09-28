@@ -5,21 +5,25 @@ Plugin URI: https://github.com/siteorigin/siteorigin-installer/
 Description: This plugin installs all the SiteOrigin themes and plugins you need to get started with your new site.
 Author: SiteOrigin
 Author URI: https://siteorigin.com
-Version: 0.1.1
+Version: 0.1.2
 License: GNU General Public License v3.0
 License URI: http://www.opensource.org/licenses/gpl-license.php
 */
 
 if( !defined( 'SITEORIGIN_INSTALLER_VERSION' ) ) {
-	define('SITEORIGIN_INSTALLER_VERSION', '0.1.1');
+	define('SITEORIGIN_INSTALLER_VERSION', '0.1.2');
 }
 
 require_once dirname( __FILE__ ) . '/inc/class-tgm-plugin-activation.php';
 require_once dirname( __FILE__ ) . '/siteorigin-installer-theme-admin.php';
 
-// Add WP Updates
+// Setup the Github updater
 require_once dirname( __FILE__ ) . '/inc/github-plugin-updater.php';
 new SiteOrigin_Installer_GitHub_Updater( __FILE__ );
+
+if( !class_exists( 'SiteOrigin_Subversion_Theme_Updater' ) ) {
+	include plugin_dir_path( __FILE__ ) . '/inc/theme-updater.php';
+}
 
 if( !class_exists('SiteOrigin_Installer') ) {
 	class SiteOrigin_Installer {
@@ -52,23 +56,18 @@ if( !class_exists('SiteOrigin_Installer') ) {
 		function register_plugins(  ){
 			$plugins = array(
 				array(
-					'name'      => 'SiteOrigin Page Builder',
+					'name'      => __( 'SiteOrigin Page Builder', 'siteorigin-installer'),
 					'slug'      => 'siteorigin-panels',
 					'required'  => false,
 				),
 				array(
-					'name'      => 'SiteOrigin Widgets Bundle',
+					'name'      => __( 'SiteOrigin Widgets Bundle', 'siteorigin-installer'),
 					'slug'      => 'so-widgets-bundle',
 					'required'  => false,
 				),
 				array(
-					'name'      => 'SiteOrigin CSS',
+					'name'      => __( 'SiteOrigin CSS', 'siteorigin-installer'),
 					'slug'      => 'so-css',
-					'required'  => false,
-				),
-				array(
-					'name'      => 'WooCommerce',
-					'slug'      => 'woocommerce',
 					'required'  => false,
 				)
 			);
@@ -77,7 +76,7 @@ if( !class_exists('SiteOrigin_Installer') ) {
 				'id'           => 'tgmpa',
 				'default_path' => '',
 				'menu'         => 'siteorigin-plugins-installer',
-				'parent_slug'  => 'siteorigin-installer',
+				'parent_slug'  => 'siteorigin',
 				'capability'   => 'activate_plugins',
 				'has_notices'  => false,
 				'dismissable'  => true,
