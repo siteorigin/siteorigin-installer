@@ -34,6 +34,7 @@ if( !class_exists( 'SiteOrigin_Subversion_Theme_Updater' ) ) {
 
 			// Ignore this for Premium SiteOrigin Themes
 			if ( defined('SITEORIGIN_IS_PREMIUM') ) return $transient;
+			// Only applies to SiteOrigin themes
 			if ( strpos( $theme->get('AuthorURI'), 'siteorigin.com' ) === false ) return $transient;
 			if ( !class_exists('DOMDocument') ) return $transient;
 
