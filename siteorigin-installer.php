@@ -34,6 +34,8 @@ if( !class_exists('SiteOrigin_Installer') ) {
 			add_action( 'tgmpa_register', array( $this, 'register_plugins' ) );
 			add_action( 'siteorigin_installer_themes', array( $this, 'register_themes' ) );
 			add_action( 'admin_notices', array( $this, 'admin_notice' ) );
+
+			add_filter( 'siteorigin_premium_affiliate_id', array( $this, 'affiliate_id' ) );
 		}
 
 		/**
@@ -209,6 +211,20 @@ if( !class_exists('SiteOrigin_Installer') ) {
 				<?php
 				add_option( 'siteorigin_installer_admin_notice', true, '', false );
 			}
+		}
+
+		/**
+		 * Get the Affiliate ID from the database.
+		 *
+		 * @param $id
+		 *
+		 * @return mixed|void
+		 */
+		function affiliate_id( $id ){
+			if( get_option( 'siteorigin_premium_affiliate_id' ) ){
+				$id = get_option( 'siteorigin_premium_affiliate_id' );
+			}
+			return $id;
 		}
 
 	}
