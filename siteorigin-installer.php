@@ -5,13 +5,13 @@ Plugin URI: https://github.com/siteorigin/siteorigin-installer/
 Description: This plugin installs all the SiteOrigin themes and plugins you need to get started with your new site.
 Author: SiteOrigin
 Author URI: https://siteorigin.com
-Version: 0.1.2
+Version: 0.1.3
 License: GNU General Public License v3.0
 License URI: http://www.opensource.org/licenses/gpl-license.php
 */
 
 if( !defined( 'SITEORIGIN_INSTALLER_VERSION' ) ) {
-	define('SITEORIGIN_INSTALLER_VERSION', '0.1.2');
+	define('SITEORIGIN_INSTALLER_VERSION', '0.1.3');
 }
 
 require_once dirname( __FILE__ ) . '/inc/class-tgm-plugin-activation.php';
@@ -34,6 +34,8 @@ if( !class_exists('SiteOrigin_Installer') ) {
 			add_action( 'tgmpa_register', array( $this, 'register_plugins' ) );
 			add_action( 'siteorigin_installer_themes', array( $this, 'register_themes' ) );
 			add_action( 'admin_notices', array( $this, 'admin_notice' ) );
+
+			add_filter( 'siteorigin_premium_affiliate_id', array( $this, 'affiliate_id' ) );
 		}
 
 		/**
@@ -209,6 +211,20 @@ if( !class_exists('SiteOrigin_Installer') ) {
 				<?php
 				add_option( 'siteorigin_installer_admin_notice', true, '', false );
 			}
+		}
+
+		/**
+		 * Get the Affiliate ID from the database.
+		 *
+		 * @param $id
+		 *
+		 * @return mixed|void
+		 */
+		function affiliate_id( $id ){
+			if( get_option( 'siteorigin_premium_affiliate_id' ) ){
+				$id = get_option( 'siteorigin_premium_affiliate_id' );
+			}
+			return $id;
 		}
 
 	}
