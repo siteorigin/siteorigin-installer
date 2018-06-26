@@ -1,5 +1,17 @@
 {
 
+  "siteorigin-corp" : {
+    "name" : "Corp",
+    "demo" : "https://demo.siteorigin.com/corp/",
+    "screenshot" : "https://ts.w.org/wp-content/themes/siteorigin-unwind/screenshot.jpg",
+    "weight" : 100
+  },
+  "siteorigin-unwind" : {
+    "name" : "Unwind",
+    "demo" : "https://demo.siteorigin.com/unwind/",
+    "screenshot" : "https://ts.w.org/wp-content/themes/siteorigin-unwind/screenshot.jpg",
+    "weight" : 100
+  },
   "siteorigin-north" : {
     "name" : "North",
     "demo" : "https://demo.siteorigin.com/north/",
