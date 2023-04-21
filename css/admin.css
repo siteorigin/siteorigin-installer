@@ -1,0 +1,173 @@
+.siteorigin-installer-wrap {
+	margin-top: 0;
+}
+
+.siteorigin-installer-header {
+	background: #f6f6f6;
+	margin: 0 -22px;
+	padding: 15px 30px 0 30px;
+}
+
+.siteorigin-installer-wrap .siteorigin-logo {
+	color: #666;
+	font: 300 2.3em/1.4em "proxima-nova","Open Sans",Helvetica,Arial,sans-serif;
+	margin-bottom: 8px;
+	margin-top: 9px;
+}
+
+.siteorigin-installer-wrap .siteorigin-logo img {
+	height: 26px;
+	width: auto;
+}
+
+.siteorigin-installer-wrap .page-sections {
+	border-bottom: 1px solid #d6d6d6;
+	margin: 0 -29px;
+	padding: 5px 0 0 30px;
+}
+
+.siteorigin-installer-wrap .page-sections li {
+	background: #f6f6f6;
+	border-width: 1px 0 1px 1px;
+	border: 1px solid #d6d6d6;
+	display: inline-block;
+	font-size: 12px;
+	line-height: 1em;
+	margin: 0 0 -1px 0;
+	position: relative;
+	transition: all .2s;
+}
+
+.siteorigin-installer-wrap .page-sections li:last-child {
+	border-right-width: 1px
+}
+
+.siteorigin-installer-wrap .page-sections li a {
+	box-shadow: none !important;
+	color: #555;
+	display: block;
+	font-weight: bold;
+	padding: 12px 25px;
+	text-decoration: none;
+}
+
+.siteorigin-installer-wrap .page-sections li:hover {
+ 	background: #f3f3f3;
+}
+
+.siteorigin-installer-wrap .page-sections li.active {
+	background: #f0f0f0;
+	border-bottom-color: #f0f0f0;
+}
+
+.siteorigin-installer-wrap .siteorigin-products {
+	display: flex;
+	flex-flow: row wrap;
+	min-width: 100%;
+	position: relative;
+}
+.siteorigin-installer-wrap .siteorigin-installer-item {
+	box-sizing: border-box;
+	padding: 0 10px 24px 10px;
+	position: relative;
+	width: 33.33%;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item .siteorigin-installer-item-body {
+	background: #fefefe;
+	border: 1px solid #d9d9d9;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+	box-sizing: border-box;
+	overflow: hidden;
+	padding: 0 10px 24px 10px;
+}
+
+@media screen and (max-width: 1280px) {
+	.siteorigin-installer-wrap .siteorigin-installer-item {
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 960px) {
+	.siteorigin-installer-wrap .siteorigin-installer-item {
+		width: 100%;
+	}
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item .siteorigin-installer-item-banner {
+	float: left;
+	height: 128px;
+	margin: 15px;
+	overflow: hidden;
+	width: auto;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item h3 {
+	color: #0073aa;
+	font-size: 1.4em;
+	font-weight: 500;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item .so-type-indicator {
+	background-color: #00a0d2;
+	color: #fff;
+	display: inline-block;
+	font-size: 0.85em;
+	line-height: 1.5em;
+	margin: 14px 0;
+	padding: 2px 6px;
+	text-decoration: none;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item .so-description {
+	color: #777777;
+	line-height: 1.35em;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons > * {
+	margin: 0 15px 15px 0;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons a:last-of-type {
+	margin-right: 0;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons button:focus {
+	outline: none;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item.siteorigin-installer-item-active .siteorigin-installer-item-toggle-active .siteorigin-installer-item-activate {
+	display: none;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item.siteorigin-installer-item-inactive .siteorigin-installer-item-toggle-active .siteorigin-installer-item-deactivate {
+	display: none;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item.siteorigin-installer-item-inactive .product-status {
+	opacity: 0;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item.siteorigin-installer-item-inactive h3 {
+	color: #666;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item.siteorigin-installer-item-inactive .siteorigin-installer-item-text .siteorigin-installer-item-links {
+	display: none;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item.siteorigin-installer-item-inactive .siteorigin-installer-item-banner {
+	-webkit-filter: grayscale(1);
+	filter: gray;
+	opacity: 0.7;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item.siteorigin-installer-item-inactive .so-buttons .so-section-link {
+	display: none;
+}
