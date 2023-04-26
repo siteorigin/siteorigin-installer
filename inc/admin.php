@@ -130,8 +130,6 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 			$upgrader = new WP_Upgrader();
 
 			if ( $_POST['type'] == 'plugins' ) {
-				// $basename = $plugin_file;
-
 				if ( $_POST['task'] == 'install' || $_POST['task'] == 'update' ) {
 					$upgrader->run( array(
 						'package' => $product_url,

@@ -49,7 +49,7 @@ if ( ! class_exists( 'SiteOrigin_Installer' ) ) {
 				$type == 'plugins' ? 'https://plugins.svn.wordpress.org/' . urlencode( $slug ) . '/tags/' :
 				'https://themes.svn.wordpress.org/' . urlencode( $slug ) . '/'
 			);
-			// var_dump( $response );
+
 			if ( is_wp_error( $response ) ) {
 				return false;
 			}
@@ -77,43 +77,6 @@ if ( ! class_exists( 'SiteOrigin_Installer' ) ) {
 			$latest_version = end( $versions );
 
 			return $latest_version;
-		}
-
-		/**
-		 * @param string $slug    The theme slug
-		 * @param string $version The version string
-		 *
-		 * @return bool|array
-		 */
-		public function get_theme_data( $slug, $version ) {
-			$url = 'https://themes.svn.wordpress.org/' . urlencode( $slug ) . '/' . urlencode( $version ) . '/style.css';
-
-			// Lets make sure we're requesting the latest version
-			$response = wp_remote_get( $url );
-
-			if ( is_wp_error( $response ) ) {
-				return false;
-			}
-
-			$body = substr( $response['body'], 0, 8192 );
-
-			$fields = array(
-				'name' => 'Theme Name',
-				'description' => 'Description',
-				'tags' => 'Tags',
-				'author' => 'Author',
-				'author_uri' => 'Author URI',
-			);
-
-			foreach ( $fields as $field => $regex ) {
-				if ( preg_match( '/^[ \t\/*#@]*' . preg_quote( $regex, '/' ) . ':(.*)$/mi', $body, $match ) && $match[1] ) {
-					$all_headers[ $field ] = strip_tags( _cleanup_header_comment( $match[1] ) );
-				} else {
-					$all_headers[ $field ] = '';
-				}
-			}
-
-			return $all_headers;
 		}
 
 		/**

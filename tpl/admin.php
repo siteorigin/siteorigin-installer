@@ -111,7 +111,7 @@
 						} else {
 							echo __( 'Theme', 'siteorigin-installer' );
 						}
-			?>
+						?>
 					</div>
 
 					<div class="so-buttons">
@@ -119,7 +119,7 @@
 							<a href="https://siteorigin.com/downloads/premium/" target="_blank" rel="noopener noreferrer" class="button-primary">
 								<?php _e( 'Get SiteOrigin Premium', 'siteorigin-installer' ); ?>		
 							</a>
-						<?php
+							<?php
 						} elseif ( ! empty( $status ) || $item['type'] == 'themes' ) {
 							if ( $status == 'install' ) {
 								$text = __( 'Install', 'siteorigin-installer' );
@@ -129,12 +129,12 @@
 							require 'action-btn.php';
 						}
 
-			if ( ! empty( $update ) ) {
-				$text = __( 'Update', 'siteorigin-installer' );
-				$status = 'update';
-				require 'action-btn.php';
-			}
-			?>
+						if ( ! empty( $update ) ) {
+							$text = __( 'Update', 'siteorigin-installer' );
+							$status = 'update';
+							require 'action-btn.php';
+						}
+						?>
 
 						<?php if ( $item['type'] == 'themes' ) { ?>
 							<a href="<?php echo esc_url( $item['demo'] ); ?>" target="_blank" rel="noopener noreferrer" class="siteorigin-demo">
