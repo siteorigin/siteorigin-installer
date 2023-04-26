@@ -17,7 +17,15 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 		}
 
 		public function display_admin_notices() {
-			if ( ! get_option( 'siteorigin_installer_admin_dismissed' ) ) {
+			global $pagenow;
+			
+			if (
+				! get_option( 'siteorigin_installer_admin_dismissed' ) &&
+				(
+					$pagenow != 'admin.php' ||
+					$_GET['page'] != 'siteorigin-installer'
+				) 
+			) {
 				$dismiss_url = wp_nonce_url( add_query_arg( array( 'action' => 'so_installer_dismiss' ), admin_url( 'admin-ajax.php' ) ), 'so_installer_dismiss' );
 				?>
 				<div id="siteorigin-installer-notice" class="notice notice-warning">
