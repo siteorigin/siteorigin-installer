@@ -34,7 +34,10 @@ jQuery( function( $ ) {
 				function( data ) {
 					if ( $$.data( 'status' ) == 'activate' ) {
 						if ( $$.data( 'type' ) == 'themes' ) {
-							$( '.siteorigin-installer-item-active.siteorigin-themes' ).addClass( 'siteorigin-installer-item-inactive' ).removeClass( 'siteorigin-installer-item-active' );
+							var $activeItem = $( '.siteorigin-installer-item-active.siteorigin-themes' )
+							$activeItem.addClass( 'siteorigin-installer-item-inactive' ).removeClass( 'siteorigin-installer-item-active' );
+							$activeItem.find( '.siteorigin-installer' ).removeClass( 'disabled' );
+							$activeItem.removeClass( 'siteorigin-installer-item-active' );
 							$( '.siteorigin-themes a.siteorigin-installer' ).show();
 							$$.hide();
 						}
