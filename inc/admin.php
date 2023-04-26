@@ -24,9 +24,8 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 					<p>
 						<?php
 						printf(
-							__( 'Start installing SiteOrigin %s and %s to get your site going.', 'siteorigin-installer' ),
-							'<a href="' . admin_url( 'admin.php?page=siteorigin-themes-installer' ) . '">' . __( 'themes', 'siteorigin-installer' ) . '</a>',
-							'<a href="' . admin_url( 'admin.php?page=siteorigin-plugins-installer' ) . '">' . __( 'plugins', 'siteorigin-installer' ) . '</a>'
+							__( "%s installing recommended SiteOrigin plugins and a SiteOrigin theme to get your site going.", 'siteorigin-installer' ),
+							'<a href="' . esc_url( admin_url( 'admin.php?page=siteorigin-installer' ) ) . '" target="_blank" rel="noopener noreferrer" >' . __( 'Click here', 'siteorigin-installer' ) . '</a>',
 						);
 						?>
 					</p>
