@@ -115,8 +115,15 @@
 					</div>
 
 					<div class="so-buttons">
-						<?php if ( $premium ) { ?>
-							<a href="https://siteorigin.com/downloads/premium/" target="_blank" rel="noopener noreferrer" class="button-primary">
+						<?php
+						if ( $premium ) {
+							$premium_url = 'https://siteorigin.com/downloads/premium/';
+							$affiliate_id = apply_filters( 'siteorigin_premium_affiliate_id', '' );
+							if ( $affiliate_id && is_numeric( $affiliate_id ) ) {
+								$premium_url = add_query_arg( 'ref', urlencode( $affiliate_id ), $premium_url );
+							}
+							?>
+							<a href="<?php echo esc_url( $premium_url ); ?>" target="_blank" rel="noopener noreferrer" class="button-primary">
 								<?php _e( 'Get SiteOrigin Premium', 'siteorigin-installer' ); ?>		
 							</a>
 							<?php
