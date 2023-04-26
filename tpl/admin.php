@@ -15,6 +15,7 @@
 	<ul class="siteorigin-products">
 		<?php
 		foreach ( $products as $slug => $item ) {
+			unset( $screenshot );
 			if ( $slug == 'siteorigin-premium' ) {
 				if (
 					! apply_filters( 'siteorigin_premium_upgrade_teaser', true ) ||
@@ -24,7 +25,6 @@
 				} else {
 					$premium = true;
 					$version = 1;
-					$screenshot = 'https://siteorigin.com/wp-content/themes/siteorigin-theme/premium/img/premium-icon.png';
 				}
 			} else {
 				if ( empty( $latest_versions[ $slug ] ) ) {
@@ -57,7 +57,9 @@
 						$update = false;
 					}
 
-					$screenshot = 'https://plugins.svn.wordpress.org/' . $slug . '/assets/icon.svg';
+					if ( empty( $item['screenshot'] ) ) {
+						$screenshot = 'https://plugins.svn.wordpress.org/' . $slug . '/assets/icon.svg';
+					}
 				} else {
 					$theme = wp_get_theme( $slug );
 
@@ -78,8 +80,11 @@
 					} else {
 						$update = false;
 					}
-					$screenshot = $item['screenshot'];
 				}
+			}
+
+			if ( ! empty( $screenshot ) ) {
+				$screenshot = $item['screenshot'];
 			}
 
 			?>
