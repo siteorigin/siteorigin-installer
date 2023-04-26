@@ -166,7 +166,7 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 		 * Display the theme admin page
 		 */
 		public function display_admin_page() {
-			$products = json_decode( file_get_contents( SITEORIGIN_INSTALLER_DIR . '/data/products.json' ), true );
+			$products = apply_filters( 'siteorigin_installer_products', json_decode( file_get_contents( SITEORIGIN_INSTALLER_DIR. '/data/products.json' ), true ) );
 
 			$latest_versions = get_transient( 'siteorigin_installer_versions' );
 
