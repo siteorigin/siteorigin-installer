@@ -1,5 +1,4 @@
-<a
-	href="<?php echo wp_nonce_url( $url, 'siteorigin-installer' ); ?>"
+<span
 	class="button-secondary siteorigin-installer"
 	data-type="<?php echo esc_attr( $item['type'] ); ?>"
 	data-slug="<?php echo esc_attr( $slug ); ?>"
@@ -10,4 +9,4 @@
 	<?php } ?>
 >
 	<?php echo $text; ?>
-</a>
+</span>
