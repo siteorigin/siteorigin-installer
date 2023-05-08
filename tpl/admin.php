@@ -83,7 +83,7 @@
 				}
 			}
 
-			if ( ! empty( $screenshot ) ) {
+			if ( empty( $screenshot ) && ! empty( $item['screenshot'] ) ) {
 				$screenshot = $item['screenshot'];
 			}
 
@@ -94,8 +94,9 @@
 					data-slug="<?php echo esc_attr( $slug ); ?>"
 					data-version="<?php echo esc_attr( $version ); ?>"
 				>
-
-					<img class="siteorigin-installer-item-banner" src="<?php echo esc_url( $screenshot ); ?>" />
+					<?php if ( ! empty( $screenshot ) ) { ?>
+						<img class="siteorigin-installer-item-banner" src="<?php echo esc_url( $screenshot ); ?>" />
+					<?php } ?>
 
 					<h3>
 						<?php echo esc_html( $item['name'] ); ?>		
