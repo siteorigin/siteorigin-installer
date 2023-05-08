@@ -32,7 +32,7 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 					<p>
 						<?php
 						printf(
-							__( "%s installing recommended SiteOrigin plugins and a SiteOrigin theme to get your site going.", 'siteorigin-installer' ),
+							__( "%s to install recommended SiteOrigin plugins and a SiteOrigin theme to get your site going.", 'siteorigin-installer' ),
 							'<a href="' . esc_url( admin_url( 'admin.php?page=siteorigin-installer' ) ) . '" target="_blank" rel="noopener noreferrer" >' . __( 'Click here', 'siteorigin-installer' ) . '</a>'
 						);
 						?>
