@@ -16,6 +16,7 @@
 		<?php
 		foreach ( $products as $slug => $item ) {
 			unset( $screenshot );
+			unset( $update );
 			if ( $slug == 'siteorigin-premium' ) {
 				if (
 					! apply_filters( 'siteorigin_premium_upgrade_teaser', true ) ||
@@ -43,18 +44,18 @@
 						$status = 'activate';
 					}
 
-					$plugin = get_plugin_data( WP_PLUGIN_DIR . "/$plugin_file" );
+					if ( $stuats != 'install' ) {
+						$plugin = get_plugin_data( WP_PLUGIN_DIR . "/$plugin_file" );
 
-					if (
-						(
-							empty( $status ) ||
-							$status == 'activate'
-						) &&
-						version_compare( $plugin['Version'], $version, '<' )
-					) {
-						$update = true;
-					} else {
-						$update = false;
+						if (
+							(
+								empty( $status ) ||
+								$status == 'activate'
+							) &&
+							version_compare( $plugin['Version'], $version, '<' )
+						) {
+							$update = true;
+						}
 					}
 
 					if ( empty( $item['screenshot'] ) ) {
@@ -77,8 +78,6 @@
 						version_compare( $theme->get( 'Version' ), $version, '<' )
 					) {
 						$update = true;
-					} else {
-						$update = false;
 					}
 				}
 			}
