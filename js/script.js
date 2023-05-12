@@ -17,7 +17,7 @@ jQuery( function( $ ) {
 		$( window ).trigger( 'resize' );
 	} );
 
-	$( 'a.siteorigin-installer' ).on( 'click', function( e ) {
+	$( 'span.siteorigin-installer' ).on( 'click', function( e ) {
 		e.preventDefault();
 
 		var $$ = $( this );
