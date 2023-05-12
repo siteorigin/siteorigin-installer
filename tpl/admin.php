@@ -44,7 +44,7 @@
 						$status = 'activate';
 					}
 
-					if ( $stuats != 'install' ) {
+					if ( $status != 'install' ) {
 						$plugin = get_plugin_data( WP_PLUGIN_DIR . "/$plugin_file" );
 
 						if (
@@ -155,7 +155,7 @@
 			</li>
 			<?php
 		}
-			?>
+		?>
 	</ul>
 
 </div>
