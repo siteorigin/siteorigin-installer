@@ -35,49 +35,6 @@ if ( ! class_exists( 'SiteOrigin_Installer' ) ) {
 
 			return empty( $single ) ? $single = new self() : $single;
 		}
-		/**
-		 * Get the latest version of the product type.
-		 *
-		 * @return bool|mixed
-		 */
-		public function get_version( $slug, $type ) {
-			if ( ! class_exists( 'DOMDocument' ) ) {
-				return false;
-			}
-
-			$response = wp_remote_get(
-				$type == 'plugins' ? 'https://plugins.svn.wordpress.org/' . urlencode( $slug ) . '/tags/' :
-				'https://themes.svn.wordpress.org/' . urlencode( $slug ) . '/'
-			);
-
-			if ( is_wp_error( $response ) ) {
-				return false;
-			}
-
-			$doc = new DOMDocument();
-			$doc->loadHTML( $response['body'] );
-			$xpath = new DOMXPath( $doc );
-
-			$versions = array();
-
-			foreach ( $xpath->query( '//body/ul/li/a' ) as $el ) {
-				preg_match( '/([0-9\.]+)\//', $el->getAttribute( 'href' ), $matches );
-
-				if ( empty( $matches[1] ) || $matches[1] == '..' ) {
-					continue;
-				}
-				$versions[] = $matches[1];
-			}
-
-			if ( empty( $versions ) ) {
-				return false;
-			}
-
-			usort( $versions, 'version_compare' );
-			$latest_version = end( $versions );
-
-			return $latest_version;
-		}
 
 		/**
 		 * Get the Affiliate ID from the database.
