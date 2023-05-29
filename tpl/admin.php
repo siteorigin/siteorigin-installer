@@ -6,9 +6,9 @@
 		</h1>
 
 		<ul class="page-sections">
-			<li class="active-section"><a href="#" data-section="all"><?php echo __( 'All', 'siteorigin-installer' ); ?></a></li>
 			<li><a href="#" data-section="plugins"><?php echo __( 'Plugins', 'siteorigin-installer' ); ?></a></li>
 			<li><a href="#" data-section="themes"><?php echo __( 'Themes', 'siteorigin-installer' ); ?></a></li>
+			<li class="active-section"><a href="#" data-section="all"><?php echo __( 'All', 'siteorigin-installer' ); ?></a></li>
 		</ul>
 	</div>
 
