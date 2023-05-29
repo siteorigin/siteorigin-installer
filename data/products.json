@@ -3,7 +3,6 @@
     "name" : "SiteOrigin Premium",
     "description" : "Placeholder",
     "documentation" : "https://siteorigin.com/premium-documentation/",
-    "screenshot" : "https://siteorigin.com/wp-content/themes/siteorigin-theme/premium/img/premium-icon.png",
     "weight" : 100,
     "version" : 1,
     "type" : "plugins"

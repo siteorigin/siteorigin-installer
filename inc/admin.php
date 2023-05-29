@@ -245,6 +245,8 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 					defined( 'SITEORIGIN_PREMIUM_VERSION' )
 				) {
 					unset( $products['siteorigin-premium'] );
+				} else {
+					$products['siteorigin-premium']['screenshot'] = SITEORIGIN_INSTALLER_URL . 'img/premium-icon.svg';
 				}
 			}
 			uasort( $products, array( $this, 'sort_compare' ) );
