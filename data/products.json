@@ -11,13 +11,19 @@
   "siteorigin-panels" : {
     "name" : "Page Builder by SiteOrigin",
     "documentation" : "https://siteorigin.com/page-builder/documentation/",
-    "weight" : 100,
+    "weight" : 95,
     "type" : "plugins"
   },
   "so-widgets-bundle" : {
     "name" : "SiteOrigin Widgets Bundle",
-    "weight" : 100,
+    "weight" : 90,
     "documentation" : "https://siteorigin.com/widgets-bundle/getting-started/",
+    "type" : "plugins"
+  },
+  "so-css" : {
+    "name" : "SiteOrigin CSS",
+    "documentation" : "https://siteorigin.com/css/getting-started/",
+    "weight" : 85,
     "type" : "plugins"
   },
    "siteorigin-corp" : {
@@ -25,7 +31,7 @@
     "demo" : "https://demo.siteorigin.com/corp/",
     "documentation" : "https://siteorigin.com/corp-documentation/",
     "screenshot" : "https://ts.w.org/wp-content/themes/siteorigin-corp/screenshot.jpg",
-    "weight" : 90,
+    "weight" : 80,
     "type" : "themes"
   },
   "siteorigin-unwind" : {
@@ -33,7 +39,7 @@
     "demo" : "https://demo.siteorigin.com/unwind/",
     "documentation" : "https://siteorigin.com/unwind-documentation/",
     "screenshot" : "https://ts.w.org/wp-content/themes/siteorigin-unwind/screenshot.jpg",
-    "weight" : 90,
+    "weight" : 75,
     "type" : "themes"
   },
   "siteorigin-north" : {
@@ -41,7 +47,7 @@
     "demo" : "https://demo.siteorigin.com/north/",
     "documentation" : "https://siteorigin.com/north-documentation/",
     "screenshot" : "https://ts.w.org/wp-content/themes/siteorigin-north/screenshot.jpg",
-    "weight" : 90,
+    "weight" : 70,
     "type" : "themes"
   },
   "vantage" : {
@@ -49,21 +55,15 @@
     "demo" : "https://demo.siteorigin.com/vantage/",
     "documentation" : "https://siteorigin.com/vantage-documentation/",
     "screenshot" : "https://ts.w.org/wp-content/themes/vantage/screenshot.jpg",
-    "weight" : 80,
+    "weight" : 65,
     "type" : "themes"
-  },
-  "so-css" : {
-    "name" : "SiteOrigin CSS",
-    "documentation" : "https://siteorigin.com/css/getting-started/",
-    "weight" : 70,
-    "type" : "plugins"
   },
   "origami" : {
     "name" : "Origami",
     "demo" : "https://demo.siteorigin.com/origami/",
     "documentation" : "https://siteorigin.com/origami-documentation/",
     "screenshot" : "https://ts.w.org/wp-content/themes/origami/screenshot.png",
-    "weight" : 50,
+    "weight" : 60,
     "type" : "themes"
   }
 }
