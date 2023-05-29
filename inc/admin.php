@@ -194,9 +194,6 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 								'fields' => $fields,
 							)
 						);
-						if ( $slug == $current_theme->get_stylesheet() ) {
-							$products[ $slug ]['weight'] = 999;
-						}
 
 						$theme = wp_get_theme( $slug );
 
