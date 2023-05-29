@@ -52,6 +52,7 @@ jQuery( function( $ ) {
 						$$.text( soInstallerAdmin.activateText )
 						$$.data( 'status', 'activate' );
 					}
+					$( window ).trigger( 'resize' );
 				}
 			);
 		}
