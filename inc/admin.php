@@ -210,6 +210,7 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 						$products[ $slug ]['update'] = version_compare( $theme->get( 'Version' ), $api->version, '<' );
 						// Theme descriptions are too long so we need to shorten them.
 						$description = explode( '.' , $api->sections['description'] );
+						$description = $description[0] . '. ' . $description[1];
 					} else {
 						$api = plugins_api(
 							'plugin_information',
@@ -240,7 +241,7 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 					$products[ $slug ]['status'] = $status;
 					$products[ $slug ]['version'] = $api->version;
 					if ( empty( $item['description'] ) ) {
-						$products[ $slug ]['description'] = $item['type'] == 'themes' ? $description[0] : $api->short_description;
+						$products[ $slug ]['description'] = $item['type'] == 'themes' ? "$description." : $api->short_description;
 					}
 				} elseif (
 					! apply_filters( 'siteorigin_premium_upgrade_teaser', true ) ||
