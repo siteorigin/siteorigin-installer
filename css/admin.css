@@ -148,8 +148,7 @@
 	outline: none;
 }
 
-.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons a.siteorigin-demo,
-.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons a.siteorigin-docs {
+.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons.so-buttons-force-wrap .so-buttons-main {
 	flex: 100%;
 }
 

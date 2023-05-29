@@ -45,34 +45,36 @@
 							?>
 						</div>
 
-						<div class="so-buttons">
-							<?php
-							if ( $slug == 'siteorigin-premium' ) {
-								$premium_url = 'https://siteorigin.com/downloads/premium/';
-								$affiliate_id = apply_filters( 'siteorigin_premium_affiliate_id', '' );
-								if ( $affiliate_id && is_numeric( $affiliate_id ) ) {
-									$premium_url = add_query_arg( 'ref', urlencode( $affiliate_id ), $premium_url );
+						<div class="so-buttons <?php echo $slug != 'siteorigin-premium' && ! empty( $item['status'] ) && ! empty( $item['update'] ) ? 'so-buttons-force-wrap' : ''; ?>">
+							<div class="so-buttons-main">
+								<?php
+								if ( $slug == 'siteorigin-premium' ) {
+									$premium_url = 'https://siteorigin.com/downloads/premium/';
+									$affiliate_id = apply_filters( 'siteorigin_premium_affiliate_id', '' );
+									if ( $affiliate_id && is_numeric( $affiliate_id ) ) {
+										$premium_url = add_query_arg( 'ref', urlencode( $affiliate_id ), $premium_url );
+									}
+									?>
+									<a href="<?php echo esc_url( $premium_url ); ?>" target="_blank" rel="noopener noreferrer" class="button-primary">
+										<?php _e( 'Get SiteOrigin Premium', 'siteorigin-installer' ); ?>		
+									</a>
+									<?php
+								} elseif ( ! empty( $item['status'] ) || $item['type'] == 'themes' ) {
+									if ( $item['status'] == 'install' ) {
+										$text = __( 'Install', 'siteorigin-installer' );
+									} else {
+										$text = __( 'Activate', 'siteorigin-installer' );
+									}
+									require 'action-btn.php';
+								}
+
+								if ( ! empty( $item['update'] ) ) {
+									$text = __( 'Update', 'siteorigin-installer' );
+									$item['status'] = 'update';
+									require 'action-btn.php';
 								}
 								?>
-								<a href="<?php echo esc_url( $premium_url ); ?>" target="_blank" rel="noopener noreferrer" class="button-primary">
-									<?php _e( 'Get SiteOrigin Premium', 'siteorigin-installer' ); ?>		
-								</a>
-								<?php
-							} elseif ( ! empty( $item['status'] ) || $item['type'] == 'themes' ) {
-								if ( $item['status'] == 'install' ) {
-									$text = __( 'Install', 'siteorigin-installer' );
-								} else {
-									$text = __( 'Activate', 'siteorigin-installer' );
-								}
-								require 'action-btn.php';
-							}
-
-							if ( ! empty( $item['update'] ) ) {
-								$text = __( 'Update', 'siteorigin-installer' );
-								$item['status'] = 'update';
-								require 'action-btn.php';
-							}
-							?>
+							</div>
 
 							<?php if ( $item['type'] == 'themes' ) { ?>
 								<a href="<?php echo esc_url( $item['demo'] ); ?>" target="_blank" rel="noopener noreferrer" class="siteorigin-demo">
