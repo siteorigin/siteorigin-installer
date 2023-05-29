@@ -151,6 +151,75 @@
 	flex: 100%;
 }
 
+@-webkit-keyframes SiteOriginInstallerloading {
+	from {
+		background-position-x: 0;
+	}
+	to {
+		background-position-x: 20.5em
+	}
+}
+
+@keyframes SiteOriginInstallerloading {
+	from {
+		background-position: 0;
+	}
+	to {
+		background-position-x: 20.5em;
+	}
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons .siteorigin-installer-button {
+	-webkit-appearance: none;
+	background: #f6f7f7;
+	border-color: #2271b1;
+	border-radius: 3px;
+	border-style: solid;
+	border-width: 1px;
+	box-sizing: border-box;
+	color: #2271b1;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 13px;
+	line-height: 2.15384615;
+	margin: 0;
+	min-height: 30px;
+	padding: 0 10px;
+	text-decoration: none;
+	vertical-align: top;
+	white-space: nowrap;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons .siteorigin-installer-button:focus {
+	background: #f6f7f7;
+	border-color: #3582c4;
+	color: #0a4b78;
+	box-shadow: 0 0 0 1px #3582c4;
+	outline: 2px solid transparent;
+	outline-offset: 0;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons .siteorigin-installer-button:hover {
+	background: #f0f0f1;
+	border-color: #0a4b78;
+	color: #0a4b78;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons .siteorigin-installer-button:active {
+	background: #f6f7f7;
+	border-color: #8c8f94;
+	box-shadow: none;
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons .siteorigin-installer-button.disabled {
+	border-color: #dcdcde;
+	box-shadow: none;
+	color: #a7aaad;
+	cursor: default;
+	-webkit-animation: SiteOriginInstallerloading 1.5s linear infinite;
+	background: linear-gradient( 90deg, #f0f0f1 0%, rgba( 240,240,241, 0.5 ) 40%, rgba( 240,240,241, 0.5 ) 60%, #f0f0f1 100% );
+}
+
 .siteorigin-installer-wrap .siteorigin-installer-item.siteorigin-installer-item-active .siteorigin-installer-item-toggle-active .siteorigin-installer-item-activate {
 	display: none;
 }

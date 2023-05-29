@@ -1,5 +1,5 @@
 <span
-	class="button-secondary siteorigin-installer"
+	class="siteorigin-installer-button siteorigin-installer"
 	data-type="<?php echo esc_attr( $item['type'] ); ?>"
 	data-slug="<?php echo esc_attr( $slug ); ?>"
 	data-status="<?php echo esc_attr( $item['status'] ); ?>"
