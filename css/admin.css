@@ -148,8 +148,14 @@
 	outline: none;
 }
 
+.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons .so-buttons-main {
+	display: flex;
+	gap: 10px;
+}
+
 .siteorigin-installer-wrap .siteorigin-installer-item .so-buttons.so-buttons-force-wrap .so-buttons-main {
 	flex: 100%;
+
 }
 
 @-webkit-keyframes SiteOriginInstallerloading {
