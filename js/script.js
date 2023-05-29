@@ -63,6 +63,8 @@ jQuery( function( $ ) {
 		var largestHeight = [];
 		var column = 0;
 
+		$( '.siteorigin-installer-item-body' ).css( 'height', 'auto' );
+
 		$products.each( function( index ) {
 			column = index / 3;
 			// Turnicate column number - IE 11 friendly.
