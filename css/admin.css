@@ -218,7 +218,7 @@
 	box-shadow: none;
 	color: #a7aaad;
 	cursor: default;
-	-webkit-animation: SiteOriginInstallerloading 1.5s linear infinite;
+	-webkit-animation: SiteOriginInstallerloading 3s linear infinite;
 	background: linear-gradient( 90deg, #f0f0f1 0%, rgba( 240,240,241, 0.5 ) 40%, rgba( 240,240,241, 0.5 ) 60%, #f0f0f1 100% );
 }
 
