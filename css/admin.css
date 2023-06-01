@@ -137,14 +137,7 @@
 	align-items: center;
 	display: flex;
 	flex-wrap: wrap;
-}
-
-.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons > * {
-	margin: 0 15px 15px 0;
-}
-
-.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons a:last-of-type {
-	margin-right: 0;
+	gap: 15px;
 }
 
 .siteorigin-installer-wrap .siteorigin-installer-item .so-buttons a:focus {
