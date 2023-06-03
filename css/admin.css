@@ -149,7 +149,7 @@
 	gap: 10px;
 }
 
-.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons.so-buttons-force-wrap .so-buttons-main {
+.siteorigin-installer-wrap .siteorigin-installer-item .so-buttons.so-buttons-force-wrap a {
 	flex: 100%;
 
 }
