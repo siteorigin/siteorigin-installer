@@ -8,12 +8,21 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 			add_action( 'wp_ajax_siteorigin_installer_manage', array( $this, 'manage_product' ) );
 			add_action( 'admin_menu', array( $this, 'admin_menu' ), 11 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 15 );
+			add_action( 'activated_plugin', array( $this, 'maybe_clear_cache' ) );
+			add_action( 'deactivated_plugin', array( $this, 'maybe_clear_cache' ) );
 		}
 
 		public static function single() {
 			static $single;
 
 			return empty( $single ) ? $single = new self() : $single;
+		}
+
+		public function maybe_clear_cache( $plugin ) {
+			$products = apply_filters( 'siteorigin_installer_products_transient', get_transient( 'siteorigin_installer_product_data' ) );
+			if ( ! empty( $products ) && ! empty( $products[ basename( $plugin, '.php' ) ] ) ) {
+				delete_transient( 'siteorigin_installer_product_data' );
+			}
 		}
 
 		public function display_admin_notices() {
@@ -142,10 +151,10 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 						),
 					) );
 
-					$refresh = true;
+					$clear = true;
 				} elseif ( $_POST['task'] == 'activate' ) {
 					@activate_plugin( $_POST['slug'] . '/' . $_POST['slug'] . '.php' );
-					$refresh = true;
+					$clear = true;
 				}
 			} elseif ( $_POST['type'] == 'themes' ) {
 				if ( $_POST['task'] == 'install' || $_POST['task'] == 'update' ) {
@@ -156,15 +165,15 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 						'clear_working' => true,
 						'abort_if_destination_exists' => false,
 					) );
-					$refresh = true;
+					$clear = true;
 				} elseif ( $_POST['task'] == 'activate' ) {
 					switch_theme( $_POST['slug'] );
-					$refresh = true;
+					$clear = true;
 				}
 			}
 
-			if ( ! empty( $refresh ) ) {
-				$this->update_product_data();
+			if ( ! empty( $clear ) ) {
+				delete_transient( 'siteorigin_installer_product_data' );
 			}
 			die();
 		}
