@@ -38,7 +38,7 @@ jQuery( function( $ ) {
 							$activeItem.addClass( 'siteorigin-installer-item-inactive' ).removeClass( 'siteorigin-installer-item-active' );
 							$activeItem.find( '.siteorigin-installer' ).removeClass( 'disabled' );
 							$activeItem.removeClass( 'siteorigin-installer-item-active' );
-							$( '.siteorigin-themes a.siteorigin-installer' ).show();
+							$( '.siteorigin-themes span.siteorigin-installer' ).show();
 							$$.hide();
 						}
 						$$.parents( '.siteorigin-installer-item-inactive' ).removeClass( 'siteorigin-installer-item-inactive' ).addClass( 'siteorigin-installer-item-active' );
