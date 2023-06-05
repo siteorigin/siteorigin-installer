@@ -25,7 +25,7 @@ if ( ! class_exists( 'SiteOrigin_Installer' ) ) {
 		public function __construct() {
 			add_filter( 'siteorigin_premium_affiliate_id', array( $this, 'affiliate_id' ) );
 
-			if ( is_admin() ) {
+			if ( apply_filters( 'siteorigin_add_installer', true ) && is_admin() ) {
 				require_once __DIR__ . '/inc/admin.php';
 			}
 		}
