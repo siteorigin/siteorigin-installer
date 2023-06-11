@@ -58,6 +58,8 @@ jQuery( function( $ ) {
 		}
 	} );
 
+	$( '.page-sections li:first-of-type a' ).trigger( 'click' );
+
 	// Make sure product heights are all the same on a row by row basis.
 	$( window ).on( 'resize', function() {
 		var $products = $( '.siteorigin-installer-item:visible' ).css( 'height', 'auto' );
