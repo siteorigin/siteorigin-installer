@@ -113,8 +113,8 @@
 	flex: 5;
 	height: 128px;
 	margin: 0 15px 15px 0;
+	object-fit: contain;
 	overflow: hidden;
-	width: auto;
 }
 
 .siteorigin-installer-wrap .siteorigin-installer-item .siteorigin-product-content {
