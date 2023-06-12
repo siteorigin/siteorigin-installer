@@ -87,6 +87,16 @@
 	display: flex;
 }
 
+.siteorigin-installer-wrap .siteorigin-installer-item.highlight-item .siteorigin-installer-item-body {
+	box-shadow: 0 1px 12px rgba(0, 0, 0, 0.2);
+}
+
+.siteorigin-installer-wrap .siteorigin-installer-item.highlight-item .siteorigin-installer-item-body .siteorigin-required {
+	display: block;
+	color: #0073aa;
+	margin-bottom: 1em;
+}
+
 @media screen and (max-width: 1280px) {
 	.siteorigin-installer-wrap .siteorigin-installer-item {
 		width: 50%;
@@ -103,8 +113,8 @@
 	flex: 5;
 	height: 128px;
 	margin: 0 15px 15px 0;
+	object-fit: contain;
 	overflow: hidden;
-	width: auto;
 }
 
 .siteorigin-installer-wrap .siteorigin-installer-item .siteorigin-product-content {

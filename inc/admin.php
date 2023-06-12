@@ -273,6 +273,12 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 				$products = $this->update_product_data();
 			}
 
+			if ( ! empty( $_GET['highlight'] ) && isset( $products[ (string) $_GET['highlight'] ] ) ) {
+				$products[ (string) $_GET['highlight'] ]['weight'] = 9999;
+				uasort( $products, array( $this, 'sort_compare' ) );
+				$highlight = $_GET['highlight'];
+			}
+
 			include SITEORIGIN_INSTALLER_DIR . '/tpl/admin.php';
 		}
 
