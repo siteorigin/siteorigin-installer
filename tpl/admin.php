@@ -92,15 +92,18 @@
 							}
 
 
-							if ( $item['type'] == 'themes' ) {
+							if ( $item['type'] == 'themes' && ! empty( $item['demo'] ) ) {
 								?>
 								<a href="<?php echo esc_url( $item['demo'] ); ?>" target="_blank" rel="noopener noreferrer" class="siteorigin-demo">
 									<?php _e( 'Demo', 'siteorigin-installer' ); ?>			
 								</a>
 							<?php } ?>
-							<a href="<?php echo esc_url( $item['documentation'] ); ?>" target="_blank" rel="noopener noreferrer" class="siteorigin-docs">
-								<?php _e( 'Documentation', 'siteorigin-installer' ); ?>
-							</a>
+
+							<?php if ( ! empty( $item['documentation'] ) ) { ?>
+								<a href="<?php echo esc_url( $item['documentation'] ); ?>" target="_blank" rel="noopener noreferrer" class="siteorigin-docs">
+									<?php _e( 'Documentation', 'siteorigin-installer' ); ?>
+								</a>
+							<?php } ?>
 						</div>
 					</div>
 
