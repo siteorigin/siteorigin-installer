@@ -15,8 +15,14 @@
 	<ul class="siteorigin-products">
 		<?php
 		foreach ( $products as $slug => $item ) {
+			$classes = array();
+			$classes[] = $slug == 'siteorigin-premium' || empty( $item['status'] ) ? 'active' : 'inactive';
+
+			if ( ! empty( $highlight ) && $slug == $highlight ) {
+				$classes[] = 'highlight-item';
+			}
 			?>
-			<li class="siteorigin-installer-item siteorigin-<?php echo esc_attr( $item['type'] ); ?> siteorigin-installer-item-<?php echo $slug == 'siteorigin-premium' || empty( $item['status'] ) ? 'active' : 'inactive'; ?>">
+			<li class="siteorigin-installer-item siteorigin-<?php echo esc_attr( $item['type'] ); ?> siteorigin-installer-item-<?php echo implode( ' ', $classes ); ?>">
 				<div
 					class="siteorigin-installer-item-body"
 					data-slug="<?php echo esc_attr( $slug ); ?>"
@@ -32,7 +38,17 @@
 							<?php echo esc_html( $item['name'] ); ?>		
 						</h3>
 						<p class="so-description">
-							<?php echo esc_html( $item['description'] ); ?>		
+							<?php
+							if ( ! empty( $highlight ) && $slug == $highlight ) {
+								echo '<span class="siteorigin-required">';
+								printf(
+									__( 'Required %s', 'siteorigin-installer' ),
+									$item['type'] == 'plugins' ? __( 'Plugin', 'siteorigin-installer' ) : __( 'Theme', 'siteorigin-installer' )
+								);
+								echo '</span>';
+							}
+							echo esc_html( $item['description'] );
+							?>		
 						</p>
 
 						<div class="so-type-indicator">
