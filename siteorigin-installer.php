@@ -24,16 +24,19 @@ if ( ! class_exists( 'SiteOrigin_Installer' ) ) {
 	class SiteOrigin_Installer {
 		public function __construct() {
 			add_filter( 'siteorigin_premium_affiliate_id', array( $this, 'affiliate_id' ) );
-
-			if ( apply_filters( 'siteorigin_add_installer', true ) && is_admin() ) {
-				require_once __DIR__ . '/inc/admin.php';
-			}
+			add_filter( 'init', array( $this, 'setup' ) );
 		}
 
 		public static function single() {
 			static $single;
 
 			return empty( $single ) ? $single = new self() : $single;
+		}
+
+		public function setup() {
+			if ( apply_filters( 'siteorigin_add_installer', true ) && is_admin() ) {
+				require_once __DIR__ . '/inc/admin.php';
+			}
 		}
 
 		/**
