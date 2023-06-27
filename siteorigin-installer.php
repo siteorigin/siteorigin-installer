@@ -25,6 +25,8 @@ if ( ! class_exists( 'SiteOrigin_Installer' ) ) {
 		public function __construct() {
 			add_filter( 'siteorigin_premium_affiliate_id', array( $this, 'affiliate_id' ) );
 			add_filter( 'init', array( $this, 'setup' ) );
+			add_filter( 'siteorigin_add_installer', array( $this, 'load_status' ) );
+			add_action( 'wp_ajax_so_installer_status', array( $this, 'installer_status_ajax' ) );
 		}
 
 		public static function single() {
@@ -50,6 +52,16 @@ if ( ! class_exists( 'SiteOrigin_Installer' ) ) {
 			}
 
 			return $id;
+		}
+
+		public function load_status() {
+			return (bool) get_option( 'siteorigin_installer', true );
+		}
+
+		public function installer_status_ajax () {
+			check_ajax_referer( 'siteorigin_installer_status', 'nonce' );
+			update_option( 'siteorigin_installer', rest_sanitize_boolean( $_POST['status'] ) );
+			die();
 		}
 	}
 }
