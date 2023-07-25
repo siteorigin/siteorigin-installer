@@ -209,11 +209,13 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 						// Work out the status of the theme.
 						if ( is_object( $theme->errors() ) ) {
 							$status = 'install';
-						} elseif ( $theme->get_stylesheet() != $current_theme->get_stylesheet() ) {
-							$status = 'activate';
+						} else {
+							$products[ $slug ]['update'] = version_compare( $theme->get( 'Version' ), $api->version, '<' );
+							if ( $theme->get_stylesheet() != $current_theme->get_stylesheet() ) {
+								$status = 'activate';
+							}
 						}
 
-						$products[ $slug ]['update'] = version_compare( $theme->get( 'Version' ), $api->version, '<' );
 						// Theme descriptions are too long so we need to shorten them.
 						$description = explode( '.' , $api->sections['description'] );
 						$description = $description[0] . '. ' . $description[1];
