@@ -16,26 +16,26 @@ class SiteOrigin_Installer_GitHub_Updater {
 
 	public function check_for_update( $transient ) {
 		$all_headers = $this->get_plugin_headers();
-		$plugin_path = $this->get_plugin_path();
 
 		if ( version_compare( SITEORIGIN_INSTALLER_VERSION, $all_headers['Version'], '<' ) ) {
 			// There is a newer version available on Github
-			$update = new stdClass();
-			$update->slug = $plugin_path;
+			$update = $this->get_plugin_data();
 			$update->new_version = $all_headers['Version'];
-			$update->url = $all_headers['PluginURI'];
-			$update->package = 'https://github.com/siteorigin/siteorigin-installer/archive/' . self::UPDATES_BRANCH . '.zip';
+			$update->stable_version = $all_headers['Version'];
 
-			$transient->response[ $plugin_path ] = $update;
+			// Prevent potential warnings if we're the first thing to add data here.
+			if ( ! is_object( $transient ) ) {
+				$transient = new stdClass();
+			}
+			if ( ! isset( $transient->response ) ) {
+				$transient->response = array();
+			}
+
+			$transient->response[ $update->slug ] = $update;
+
 		}
 
 		return $transient;
-	}
-
-	public function get_plugin_path() {
-		preg_match( '#/([a-zA-Z\-]+/[a-zA-Z\-]+\.php)$#', $this->file, $matches );
-
-		return !empty( $matches[1] ) ? $matches[1] : false;
 	}
 
 	public function get_plugin_headers() {
@@ -86,7 +86,7 @@ class SiteOrigin_Installer_GitHub_Updater {
 			return false;
 		}
 
-		if ( !class_exists( 'Parsedown' ) ) {
+		if ( ! class_exists( 'Parsedown' ) ) {
 			require_once plugin_dir_path( __FILE__ ) . '/Parsedown/Parsedown.php';
 		}
 
@@ -95,28 +95,38 @@ class SiteOrigin_Installer_GitHub_Updater {
 		return $parsedown->parse( $response['body'] );
 	}
 
+	private function get_plugin_data() {
+		$headers = $this->get_plugin_headers();
+		$data = new stdClass();
+		$data->slug = 'siteorigin-installer-develop/siteorigin-installer.php';
+		$data->plugin_name = $headers['Name'];
+		$data->name = $headers['Name'];
+		$data->version = $headers['Version'];
+		$data->author = $headers['Author'];
+		$data->url = $headers['PluginURI'];
+		$data->homepage = $headers['PluginURI'];
+		$data->download_link = 'https://github.com/siteorigin/siteorigin-installer/archive/' . self::UPDATES_BRANCH . '.zip';
+		$data->icons = array(
+			'1x' => 'https://siteorigin.com/wp-content/themes/siteorigin-theme/pages/installer/images/icon.png',
+		);
+		$data->sections = array(
+			'description' => $this->get_github_markdown( 'readme.md' ),
+			'changelog' => $this->get_github_markdown( 'changelog.md' ),
+		);
+		return $data;
+	}
+
 	/**
 	 * Add all the plugin details to the Plugin API call
 	 *
 	 * @return stdClass
 	 */
 	public function plugin_api_call( $def, $action, $args ) {
-		if ( isset( $args->slug ) && $args->slug == $this->get_plugin_path() && $action == 'plugin_information' ) {
-			$headers = $this->get_plugin_headers();
-			$response = new stdClass();
-			$response->slug = $this->get_plugin_path();
-			$response->plugin_name = $headers['Name'];
-			$response->name = $headers['Name'];
-			$response->version = $headers['Version'];
-			$response->author = $headers['Author'];
-			$response->homepage = $headers['PluginURI'];
-			$response->download_link = 'https://github.com/siteorigin/siteorigin-installer/archive/' . self::UPDATES_BRANCH . '.zip';
-			$response->sections = array(
-				'description' => $this->get_github_markdown( 'readme.md' ),
-				'changelog' => $this->get_github_markdown( 'changelog.md' ),
-			);
-
-			return $response;
+		if (
+			isset( $args->slug ) &&
+			$args->slug == 'siteorigin-installer-develop/siteorigin-installer.php' &&
+			$action == 'plugin_information' ) {
+			return $this->get_plugin_data();
 		} else {
 			return $def;
 		}
