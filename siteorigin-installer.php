@@ -15,9 +15,11 @@ if ( ! defined( 'SITEORIGIN_INSTALLER_VERSION' ) ) {
 	define( 'SITEORIGIN_INSTALLER_DIR', plugin_dir_path( __FILE__ ) );
 	define( 'SITEORIGIN_INSTALLER_URL', plugin_dir_url( __FILE__ ) );
 
-	// Setup the Github updater
-	require_once SITEORIGIN_INSTALLER_DIR . '/inc/github-plugin-updater.php';
-	new SiteOrigin_Installer_GitHub_Updater( __FILE__ );
+	// If the installer has been installed as a plugin (rather than bundled), setup the Github updater.
+	if ( basename( SITEORIGIN_INSTALLER_DIR ) == 'siteorigin-installer-develop' ) {
+		require_once SITEORIGIN_INSTALLER_DIR . '/inc/github-plugin-updater.php';
+		new SiteOrigin_Installer_GitHub_Updater( __FILE__ );
+	}
 }
 
 if ( ! class_exists( 'SiteOrigin_Installer' ) ) {
