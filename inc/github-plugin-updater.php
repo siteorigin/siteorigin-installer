@@ -106,6 +106,7 @@ class SiteOrigin_Installer_GitHub_Updater {
 		$data->url = $headers['PluginURI'];
 		$data->homepage = $headers['PluginURI'];
 		$data->download_link = 'https://github.com/siteorigin/siteorigin-installer/archive/' . self::UPDATES_BRANCH . '.zip';
+		$data->package = 'https://github.com/siteorigin/siteorigin-installer/archive/' . self::UPDATES_BRANCH . '.zip';
 		$data->icons = array(
 			'1x' => 'https://siteorigin.com/wp-content/themes/siteorigin-theme/pages/installer/images/icon.png',
 		);
