@@ -11,7 +11,7 @@ License URI: http://www.opensource.org/licenses/gpl-license.php
 */
 
 if ( ! defined( 'SITEORIGIN_INSTALLER_VERSION' ) ) {
-	define( 'SITEORIGIN_INSTALLER_VERSION', '1.0.0' );
+	define( 'SITEORIGIN_INSTALLER_VERSION', '1.0.3' );
 	define( 'SITEORIGIN_INSTALLER_DIR', plugin_dir_path( __FILE__ ) );
 	define( 'SITEORIGIN_INSTALLER_URL', plugin_dir_url( __FILE__ ) );
 
