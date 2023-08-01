@@ -10,15 +10,15 @@ class SiteOrigin_Installer_GitHub_Updater {
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_for_update' ), 15 );
 		add_filter( 'plugins_api', array( $this, 'plugin_api_call' ), 10, 3 );
 
-		// This line forces an updates call
+		// This line forces an updates call.
 		// set_site_transient( 'update_plugins', null );
 	}
 
 	public function check_for_update( $transient ) {
 		$all_headers = $this->get_plugin_headers();
 
-		if ( version_compare( SITEORIGIN_INSTALLER_VERSION, $all_headers['Version'], '<' ) ) {
-			// There is a newer version available on Github
+		if ( ! empty( $all_headers ) && version_compare( SITEORIGIN_INSTALLER_VERSION, $all_headers['Version'], '<' ) ) {
+			// There is a newer version available on Github.
 			$update = $this->get_plugin_data();
 			$update->new_version = $all_headers['Version'];
 			$update->stable_version = $all_headers['Version'];
@@ -32,7 +32,6 @@ class SiteOrigin_Installer_GitHub_Updater {
 			}
 
 			$transient->response[ $update->slug ] = $update;
-
 		}
 
 		return $transient;
@@ -97,6 +96,9 @@ class SiteOrigin_Installer_GitHub_Updater {
 
 	private function get_plugin_data() {
 		$headers = $this->get_plugin_headers();
+		if ( empty( $headers ) ) {
+			return array();
+		}
 		$data = new stdClass();
 		$data->slug = 'siteorigin-installer-develop/siteorigin-installer.php';
 		$data->plugin_name = $headers['Name'];
@@ -127,7 +129,8 @@ class SiteOrigin_Installer_GitHub_Updater {
 			isset( $args->slug ) &&
 			$args->slug == 'siteorigin-installer-develop/siteorigin-installer.php' &&
 			$action == 'plugin_information' ) {
-			return $this->get_plugin_data();
+			$data = $this->get_plugin_data();
+			return empty( $data ) ? $def : $data;
 		} else {
 			return $def;
 		}
