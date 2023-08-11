@@ -5,13 +5,13 @@ Plugin URI: https://siteorigin.com/installer/
 Description: This plugin installs all the SiteOrigin themes and plugins you need to get started with your new site.
 Author: SiteOrigin
 Author URI: https://siteorigin.com
-Version: 1.0.3
+Version: 1.0.4
 License: GNU General Public License v3.0
 License URI: http://www.opensource.org/licenses/gpl-license.php
 */
 
 if ( ! defined( 'SITEORIGIN_INSTALLER_VERSION' ) ) {
-	define( 'SITEORIGIN_INSTALLER_VERSION', '1.0.3' );
+	define( 'SITEORIGIN_INSTALLER_VERSION', '1.0.4' );
 	define( 'SITEORIGIN_INSTALLER_DIR', plugin_dir_path( __FILE__ ) );
 	define( 'SITEORIGIN_INSTALLER_URL', plugin_dir_url( __FILE__ ) );
 

@@ -1,3 +1,10 @@
+#### 1.0.4 - 12 August 2023
+* Update standalone installer updater to support rework.
+* Don't load standalone installer updater when installer is bundled. 
+* Added theme mode. When in theme mode, the top level SiteOrigin menu item isn't added and installer must be accessed by direct link. Can be enabled defining `SITEORIGIN_INSTALLER_THEME_MODE`
+* Only show notice to users who can install plugins.
+* Adjust notice margin.
+
 #### 1.0.3 - 9 July 2023
 * Add Installer Status Support. This is used by SiteOrgin plugins and themes to control whether the bundled installer plugin is loaded or not.
 
