@@ -73,7 +73,10 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 		public function admin_menu() {
 			global $menu;
 
-			if ( empty( $GLOBALS['admin_page_hooks']['siteorigin'] ) ) {
+			if (
+				! defined( 'SITEORIGIN_INSTALLER_THEME_MODE' ) &&
+				empty( $GLOBALS['admin_page_hooks']['siteorigin'] )
+			) {
 				add_menu_page(
 					__( 'SiteOrigin', 'siteorigin-installer' ),
 					__( 'SiteOrigin', 'siteorigin-installer' ),
