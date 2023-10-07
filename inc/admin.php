@@ -27,7 +27,7 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 
 		public function display_admin_notices() {
 			global $pagenow;
-			
+
 			if (
 				! get_option( 'siteorigin_installer_admin_dismissed' ) &&
 				current_user_can( 'install_plugins' ) &&
@@ -82,7 +82,7 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 					__( 'SiteOrigin', 'siteorigin-installer' ),
 					__( 'SiteOrigin', 'siteorigin-installer' ),
 					false,
-					'siteorigin',
+					'admin.php?page=siteorigin-installer',
 					false,
 					SITEORIGIN_INSTALLER_URL . '/img/icon.svg',
 					66
@@ -100,7 +100,10 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 		}
 
 		public function enqueue_scripts( $prefix ) {
-			if ( $prefix !== 'siteorigin_page_siteorigin-installer' ) {
+			if (
+				$prefix !== 'admin_page_siteorigin-installer' &&
+				$prefix !== 'siteorigin_page_siteorigin-installer'
+			) {
 				return;
 			}
 
