@@ -33,7 +33,10 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 				current_user_can( 'install_plugins' ) &&
 				(
 					$pagenow != 'admin.php' ||
-					$_GET['page'] != 'siteorigin-installer'
+					(
+						! empty( $_GET['page'] ) &&
+						$_GET['page'] != 'siteorigin-installer'
+					)
 				)
 			) {
 				$dismiss_url = wp_nonce_url( add_query_arg( array( 'action' => 'so_installer_dismiss' ), admin_url( 'admin-ajax.php' ) ), 'so_installer_dismiss' );
