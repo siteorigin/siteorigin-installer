@@ -142,7 +142,9 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 				die();
 			}
 
-			$product_url = 'https://wordpress.org/' . urlencode( $_POST['type'] ) . '/download/' . urlencode( $_POST['slug'] ) . '.' . urlencode( $_POST['version'] ) . '.zip';
+			$slug = sanitize_file_name( $_POST['slug'] );
+
+			$product_url = 'https://wordpress.org/' . urlencode( $_POST['type'] ) . '/download/' . urlencode( $slug ) . '.' . urlencode( $_POST['version'] ) . '.zip';
 			// check_ajax_referer( 'so_installer_manage' );
 			if ( ! class_exists( 'WP_Upgrader' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
@@ -152,7 +154,7 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 			if ( $_POST['type'] == 'plugins' ) {
 				if ( $_POST['task'] == 'install' || $_POST['task'] == 'update' ) {
 					$upgrader->run( array(
-						'package' => $product_url,
+						'package' => esc_url( $product_url ),
 						'destination' => WP_PLUGIN_DIR,
 						'clear_destination' => true,
 						'abort_if_destination_exists' => false,
@@ -163,14 +165,17 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 					) );
 
 					$clear = true;
-				} elseif ( $_POST['task'] == 'activate' ) {
-					@activate_plugin( $_POST['slug'] . '/' . $_POST['slug'] . '.php' );
+				} elseif (
+					$_POST['task'] == 'activate' &&
+					validate_plugin( $slug . '/' . $slug . '.php' )
+				) {
+					activate_plugin( $slug . '/' . $slug . '.php' );
 					$clear = true;
 				}
 			} elseif ( $_POST['type'] == 'themes' ) {
 				if ( $_POST['task'] == 'install' || $_POST['task'] == 'update' ) {
 					$upgrader->run( array(
-						'package' => $product_url,
+						'package' => esc_url( $product_url ),
 						'destination' => get_theme_root(),
 						'clear_destination' => true,
 						'clear_working' => true,
@@ -178,7 +183,7 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 					) );
 					$clear = true;
 				} elseif ( $_POST['task'] == 'activate' ) {
-					switch_theme( $_POST['slug'] );
+					switch_theme( $slug );
 					$clear = true;
 				}
 			}
