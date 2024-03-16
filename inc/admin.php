@@ -166,7 +166,7 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 					$clear = true;
 				} elseif (
 					$_POST['task'] == 'activate' &&
-					validate_plugin( $slug . '/' . $slug . '.php' )
+					! is_wp_error( validate_plugin( $slug . '/' . $slug . '.php' ) )
 				) {
 					activate_plugin( $slug . '/' . $slug . '.php' );
 					$clear = true;
