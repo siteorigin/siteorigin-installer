@@ -46,8 +46,8 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 					<p>
 						<?php
 						printf(
-							__( '%s to install recommended SiteOrigin plugins and a SiteOrigin theme to get your site going.', 'siteorigin-installer' ),
-							'<a href="' . esc_url( admin_url( 'admin.php?page=siteorigin-installer' ) ) . '" target="_blank" rel="noopener noreferrer" >' . __( 'Click here', 'siteorigin-installer' ) . '</a>'
+							__( '%s to install recommended SiteOrigin plugins and a SiteOrigin theme to get your site going.', 'siteorigin-installer-text-domain' ),
+							'<a href="' . esc_url( admin_url( 'admin.php?page=siteorigin-installer' ) ) . '" target="_blank" rel="noopener noreferrer" >' . __( 'Click here', 'siteorigin-installer-text-domain' ) . '</a>'
 						);
 						?>
 					</p>
@@ -83,8 +83,8 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 				empty( $GLOBALS['admin_page_hooks']['siteorigin'] )
 			) {
 				add_menu_page(
-					__( 'SiteOrigin', 'siteorigin-installer' ),
-					__( 'SiteOrigin', 'siteorigin-installer' ),
+					__( 'SiteOrigin', 'siteorigin-installer-text-domain' ),
+					__( 'SiteOrigin', 'siteorigin-installer-text-domain' ),
 					false,
 					'admin.php?page=siteorigin-installer',
 					false,
@@ -95,8 +95,8 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 
 			add_submenu_page(
 				'siteorigin',
-				__( 'Installer', 'siteorigin-installer' ),
-				__( 'Installer', 'siteorigin-installer' ),
+				__( 'Installer', 'siteorigin-installer-text-domain' ),
+				__( 'Installer', 'siteorigin-installer-text-domain' ),
 				'manage_options',
 				'siteorigin-installer',
 				array( $this, 'display_admin_page' )
@@ -130,7 +130,7 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 				'soInstallerAdmin',
 				array(
 					'manageUrl' => wp_nonce_url( admin_url( 'admin-ajax.php?action=siteorigin_installer_manage' ), 'siteorigin-installer-manage' ),
-					'activateText' => __( 'Activate', 'siteorigin-installer' ),
+					'activateText' => __( 'Activate', 'siteorigin-installer-text-domain' ),
 				)
 			);
 		}
