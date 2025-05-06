@@ -85,7 +85,7 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 				add_menu_page(
 					__( 'SiteOrigin', 'siteorigin-installer-text-domain' ),
 					__( 'SiteOrigin', 'siteorigin-installer-text-domain' ),
-					false,
+					'manage_options',
 					'admin.php?page=siteorigin-installer',
 					false,
 					SITEORIGIN_INSTALLER_URL . '/img/icon.svg',
