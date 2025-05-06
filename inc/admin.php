@@ -82,13 +82,15 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 				! defined( 'SITEORIGIN_INSTALLER_THEME_MODE' ) &&
 				empty( $GLOBALS['admin_page_hooks']['siteorigin'] )
 			) {
+				$svg = file_get_contents( SITEORIGIN_INSTALLER_DIR . '/img/menu-icon.svg' );
+
 				add_menu_page(
 					__( 'SiteOrigin', 'siteorigin-installer-text-domain' ),
 					__( 'SiteOrigin', 'siteorigin-installer-text-domain' ),
 					false,
 					'admin.php?page=siteorigin-installer',
 					false,
-					SITEORIGIN_INSTALLER_URL . '/img/icon.svg',
+					'data:image/svg+xml;base64,' . base64_encode( $svg ),
 					66
 				);
 			}
