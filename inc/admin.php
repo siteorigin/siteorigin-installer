@@ -122,14 +122,14 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 
 			wp_enqueue_style(
 				'siteorigin-installer',
-				SITEORIGIN_INSTALLER_URL . '/css/admin.css',
+				SITEORIGIN_INSTALLER_URL . 'css/admin.css',
 				array(),
 				SITEORIGIN_INSTALLER_VERSION
 			);
 
 			wp_enqueue_script(
 				'siteorigin-installer',
-				SITEORIGIN_INSTALLER_URL . '/js/script.js',
+				SITEORIGIN_INSTALLER_URL . 'js/script.js',
 				array( 'jquery' ),
 				SITEORIGIN_INSTALLER_VERSION
 			);
