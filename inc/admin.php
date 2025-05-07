@@ -106,6 +106,13 @@ if ( ! class_exists( 'SiteOrigin_Installer_Admin' ) ) {
 		}
 
 		public function enqueue_scripts( $prefix ) {
+			wp_enqueue_style(
+				'siteorigin-installer-menu-icon',
+				SITEORIGIN_INSTALLER_URL . 'css/menu-icon.css',
+				array(),
+				SITEORIGIN_INSTALLER_VERSION
+			);
+
 			if (
 				$prefix !== 'admin_page_siteorigin-installer' &&
 				$prefix !== 'siteorigin_page_siteorigin-installer'
