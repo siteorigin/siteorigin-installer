@@ -1,0 +1,29 @@
+# Directories
+.git
+.github
+.wordpress-org
+node_modules
+vendor
+build
+tests
+
+# Files
+.distignore
+.gitignore
+.gitattributes
+.editorconfig
+.eslintrc
+.eslintignore
+.travis.yml
+.DS_Store
+Thumbs.db
+composer.json
+composer.lock
+package.json
+package-lock.json
+phpunit.xml
+phpunit.xml.dist
+README.md
+webpack.config.js
+*.zip
+*.tar.gz 
