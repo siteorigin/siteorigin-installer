@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Get version
         id: get_version
@@ -67,7 +67,7 @@ jobs:
           zip -r siteorigin-installer-${{ env.VERSION }}.zip siteorigin-installer
 
       - name: Upload zip as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: siteorigin-installer-${{ steps.get_version.outputs.version }}
           path: build/siteorigin-installer-${{ env.VERSION }}.zip
