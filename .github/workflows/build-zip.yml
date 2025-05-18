@@ -61,21 +61,13 @@ jobs:
         run: |
           rsync -av --exclude-from='.distignore' --exclude='build' --exclude='.git' --exclude='.github' . build/siteorigin-installer/
 
-      - name: Create zip files
+      - name: Create zip file
         run: |
           cd build
-          # Create versioned zip
-          zip -r siteorigin-installer-${{ env.VERSION }}.zip siteorigin-installer
-          # Create version-agnostic zip
-          cp siteorigin-installer-${{ env.VERSION }}.zip siteorigin-installer.zip
+          # Create version-agnostic zip only
+          zip -r siteorigin-installer.zip siteorigin-installer
 
-      - name: Upload versioned zip as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: siteorigin-installer-${{ steps.get_version.outputs.version }}
-          path: build/siteorigin-installer-${{ env.VERSION }}.zip
-
-      - name: Upload version-agnostic zip as artifact
+      - name: Upload zip as artifact
         uses: actions/upload-artifact@v4
         with:
           name: siteorigin-installer
@@ -86,8 +78,6 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            build/siteorigin-installer-${{ env.VERSION }}.zip
-            build/siteorigin-installer.zip
+          files: build/siteorigin-installer.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
