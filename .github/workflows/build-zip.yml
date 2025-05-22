@@ -34,24 +34,15 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Update version in plugin file
+      - name: Update version in plugin header
         run: |
           # Update version in plugin header
           sed -i "s/Version: dev/Version: $VERSION/" siteorigin-installer.php
-          
+
+      - name: Update version in plugin file
+        run: |
           # Update version constant
           sed -i "s/define( 'SITEORIGIN_INSTALLER_VERSION', 'dev' );/define( 'SITEORIGIN_INSTALLER_VERSION', '$VERSION' );/" siteorigin-installer.php
-
-      - name: Update readme.txt
-        run: |
-          # Update build time
-          BUILD_TIME=$(date +'%s')
-          sed -i "s/Build time: unbuilt/Build time: $BUILD_TIME/" readme.txt
-          
-          # Update stable tag if this is a tagged release
-          if [[ $GITHUB_REF == refs/tags/* ]]; then
-            sed -i "s/Stable tag: trunk/Stable tag: $VERSION/" readme.txt
-          fi
 
       - name: Create build directory
         run: |
