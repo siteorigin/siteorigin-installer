@@ -11,7 +11,7 @@ Text Domain: siteorigin-installer-text-domain
 Author URI: https://siteorigin.com
 Plugin URI: https://siteorigin.com/installer/
 License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl.html
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 */
 
 if ( ! defined( 'SITEORIGIN_INSTALLER_VERSION' ) ) {
