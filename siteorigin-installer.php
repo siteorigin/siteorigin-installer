@@ -52,10 +52,15 @@ if ( ! class_exists( 'SiteOrigin_Installer' ) ) {
 				is_admin() &&
 				self::user_has_permission()
 			) {
-				// If the installer has been installed as a plugin (rather than bundled), setup the Github updater.
-				if ( basename( SITEORIGIN_INSTALLER_DIR ) == 'siteorigin-installer-develop' ) {
-					require_once SITEORIGIN_INSTALLER_DIR . '/inc/github-plugin-updater.php';
-					new SiteOrigin_Installer_GitHub_Updater( __FILE__ );
+				/**
+				 * Determine if the SiteOriginInstaller is a standalone plugin to conditionally load the updater.
+				 * This prevents loading the updater when the Installer is bundled within another plugin.
+				 */
+				if ( plugin_basename( __FILE__ ) === 'siteorigin-installer/siteorigin-installer.php' ) {
+					if ( file_exists( plugin_dir_path( __FILE__ ) . 'updater/updater.php' ) ) {
+						require_once plugin_dir_path( __FILE__ ) . 'updater/updater.php';
+						new SiteOrigin_Updater( __FILE__, 'siteorigin-installer', 'siteorigin-installer' );
+					}
 				}
 
 				require_once __DIR__ . '/inc/admin.php';
