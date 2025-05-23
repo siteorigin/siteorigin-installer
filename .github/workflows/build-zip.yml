@@ -1,0 +1,74 @@
+name: Build Plugin Zip
+
+on:
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to build'
+        required: false
+        default: 'dev'
+
+jobs:
+  build:
+    name: Build Plugin Zip
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get version
+        id: get_version
+        run: |
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            # Remove 'v' prefix if present
+            VERSION=${GITHUB_REF#refs/tags/}
+            VERSION=${VERSION#v}
+          elif [[ "${{ github.event.inputs.version }}" != "" ]]; then
+            VERSION=${{ github.event.inputs.version }}
+          else
+            VERSION=dev-$(date +'%Y%m%d%H%M%S')
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Update version in plugin header
+        run: |
+          # Update version in plugin header
+          sed -i "s/Version: [0-9]*\.[0-9]*\.[0-9]*/Version: $VERSION/" siteorigin-installer.php
+
+      - name: Update version in plugin file
+        run: |
+          # Update version constant
+          sed -i "s/define( 'SITEORIGIN_INSTALLER_VERSION', '[0-9]*\.[0-9]*\.[0-9]*' );/define( 'SITEORIGIN_INSTALLER_VERSION', '$VERSION' );/" siteorigin-installer.php
+
+      - name: Create build directory
+        run: |
+          mkdir -p build/siteorigin-installer
+
+      - name: Copy files to build directory
+        run: |
+          rsync -av --exclude-from='.distignore' --exclude='build' --exclude='.git' --exclude='.github' . build/siteorigin-installer/
+
+      - name: Create zip file
+        run: |
+          cd build
+          # Create version-agnostic zip only
+          zip -r siteorigin-installer.zip siteorigin-installer
+
+      - name: Upload zip as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: siteorigin-installer
+          path: build/siteorigin-installer.zip
+
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/siteorigin-installer.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

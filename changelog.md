@@ -1,3 +1,10 @@
+#### 1.0.3 - 31 July 2023
+* Added Corp and Unwind to theme list.
+* Improved theme activation process.
+* Updated notice text and CSS for better UI.
+* Enhanced installer status and AJAX handling.
+* Various UI and performance improvements.
+
 #### 0.1.3 - 22 January 2016
 * Added affiliate ID filter.
 

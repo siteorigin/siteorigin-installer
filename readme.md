@@ -1,4 +1,4 @@
-## SiteOrigin Installer: Your All-in-One WordPress Toolkit
+# SiteOrigin Installer: Your All-in-One WordPress Toolkit
 
 Streamline your WordPress setup with SiteOrigin Installer, the single plugin designed to equip your new or existing website with SiteOrigin's most powerful and essential plugins, plus stunning, compatible themes. Get everything you need in one go, saving you time and effort.
 

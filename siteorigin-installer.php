@@ -1,13 +1,17 @@
 <?php
 /*
 Plugin Name: SiteOrigin Installer
-Plugin URI: https://siteorigin.com/installer/
-Description: Easily install all essential SiteOrigin plugins and themes in one go for your WordPress site.
-Author: SiteOrigin
-Author URI: https://siteorigin.com
+Description: Streamline your WordPress setup with SiteOrigin's essential plugins and compatible themes in one go.
 Version: 1.0.3
-License: GNU General Public License v3.0
-License URI: http://www.opensource.org/licenses/gpl-license.php
+Requires at least: 4.7
+Tested up to: 6.8
+Requires PHP: 7.0.0
+Author: SiteOrigin
+Text Domain: siteorigin-installer-text-domain
+Author URI: https://siteorigin.com
+Plugin URI: https://siteorigin.com/installer/
+License: GPLv3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 */
 
 if ( ! defined( 'SITEORIGIN_INSTALLER_VERSION' ) ) {
