@@ -53,7 +53,7 @@ if ( ! class_exists( 'SiteOrigin_Installer' ) ) {
 				self::user_has_permission()
 			) {
 				/**
-				 * Determine if the SiteOriginInstaller is a standalone plugin to conditionally load the updater.
+				 * Determine if the SiteOrigin Installer is a standalone plugin to conditionally load the updater.
 				 * This prevents loading the updater when the Installer is bundled within another plugin.
 				 */
 				if ( plugin_basename( __FILE__ ) === 'siteorigin-installer/siteorigin-installer.php' ) {
