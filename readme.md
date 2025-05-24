@@ -1,4 +1,4 @@
-# SiteOrigin Installer: Your Centralized WordPress Plugin and Theme Installer
+# SiteOrigin Installer: Your All-in-One WordPress Setup
 
 Streamline your WordPress setup with SiteOrigin Installer. Equip your new or existing website with powerful SiteOrigin plugins, essential third-party integrations, and stunning, compatible SiteOrigin themes. Get everything you need in one go, saving you time and effort.
 
