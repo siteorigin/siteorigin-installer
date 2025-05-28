@@ -56,7 +56,13 @@ if ( ! class_exists( 'SiteOrigin_Installer' ) ) {
 				 * Determine if the SiteOrigin Installer is a standalone plugin to conditionally load the updater.
 				 * This prevents loading the updater when the Installer is bundled within another plugin.
 				 */
-				if ( plugin_basename( __FILE__ ) === 'siteorigin-installer/siteorigin-installer.php' ) {
+				$plugin_basename = plugin_basename( __FILE__ );
+				$is_standalone = (
+					$plugin_basename === 'siteorigin-installer/siteorigin-installer.php' ||
+					strpos( $plugin_basename, 'siteorigin-installer-' ) === 0
+				);
+				
+				if ( $is_standalone ) {
 					if ( file_exists( plugin_dir_path( __FILE__ ) . 'updater/updater.php' ) ) {
 						require_once plugin_dir_path( __FILE__ ) . 'updater/updater.php';
 						new SiteOrigin_Updater( __FILE__, 'siteorigin-installer', 'siteorigin-installer' );
