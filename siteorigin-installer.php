@@ -10,6 +10,7 @@ Author: SiteOrigin
 Text Domain: siteorigin-installer-text-domain
 Author URI: https://siteorigin.com
 Plugin URI: https://siteorigin.com/installer/
+Update URI: https://github.com/siteorigin/siteorigin-installer/
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 */
