@@ -3,7 +3,7 @@
 Plugin Name: SiteOrigin Installer
 Description: Streamline your WordPress setup with SiteOrigin's essential plugins and compatible themes in one go.
 Version: 1.0.3
-Requires at least: 4.7
+Requires at least: 5.8
 Tested up to: 6.8
 Requires PHP: 7.0.0
 Author: SiteOrigin
