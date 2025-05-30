@@ -66,7 +66,7 @@ if ( ! class_exists( 'SiteOrigin_Installer' ) ) {
 				if ( $is_standalone ) {
 					if ( file_exists( plugin_dir_path( __FILE__ ) . 'github-updater/updater.php' ) ) {
 						require_once plugin_dir_path( __FILE__ ) . 'github-updater/updater.php';
-						new SiteOrigin_Updater( __FILE__, 'siteorigin-installer', 'siteorigin-installer' );
+						new SiteOrigin_Updater( __FILE__, 'siteorigin-installer', 'siteorigin/siteorigin-installer' );
 					}
 				}
 
