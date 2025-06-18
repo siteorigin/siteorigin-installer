@@ -1,3 +1,0 @@
-[submodule "github-updater"]
-	path = github-updater
-	url = git@github.com:siteorigin/github-updater.git

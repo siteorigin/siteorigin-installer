@@ -18,8 +18,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
 
       - name: Get version
         id: get_version
@@ -38,18 +36,13 @@ jobs:
 
       - name: Update version in plugin header
         run: |
-          echo "Updating version to: $VERSION"
-          # Update version in plugin header - more flexible pattern
+          # Update version in plugin header
           sed -i "s/Version: [0-9]*\.[0-9]*\.[0-9]*/Version: $VERSION/" siteorigin-installer.php
-          echo "Updated plugin header:"
-          grep "Version:" siteorigin-installer.php
 
       - name: Update version in plugin file
         run: |
-          # Update version constant - more flexible pattern
+          # Update version constant
           sed -i "s/define( 'SITEORIGIN_INSTALLER_VERSION', '[0-9]*\.[0-9]*\.[0-9]*' );/define( 'SITEORIGIN_INSTALLER_VERSION', '$VERSION' );/" siteorigin-installer.php
-          echo "Updated version constant:"
-          grep "SITEORIGIN_INSTALLER_VERSION" siteorigin-installer.php
 
       - name: Create build directory
         run: |
