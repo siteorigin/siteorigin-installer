@@ -10,17 +10,20 @@
 
 .siteorigin-installer-wrap .siteorigin-logo {
 	align-items: center;
-	color: #666;
+	color: #494949;
 	display: flex;
-	font: 300 2.3em/1.4em "proxima-nova","Open Sans",Helvetica,Arial,sans-serif;
-	gap: 8.5px;
+	font-size: 28px;
+	font-weight: 300;
+	font-family: "proxima-nova","Open Sans",Helvetica,Arial,sans-serif;
+	line-height: 1.4em;
+	gap: 10px;
 	margin-bottom: 8px;
 	margin-top: 9px;
 }
 
 .siteorigin-installer-wrap .siteorigin-logo img {
-	height: 26px;
-	opacity: 0.7;
+	height: 30px;
+	opacity: 1;
 	width: auto;
 }
 
