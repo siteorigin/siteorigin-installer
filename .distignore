@@ -9,8 +9,9 @@ tests
 
 # Files
 .distignore
-.gitignore
 .gitattributes
+.gitignore
+.gitmodules
 .editorconfig
 .eslintrc
 .eslintignore
