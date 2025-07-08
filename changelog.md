@@ -1,3 +1,10 @@
+#### 1.0.4 - 8 July 2025
+* Fixed plugin activation issues for required plugins.
+* Fixed menu visibility based on user permissions.
+* Improved plugin update system compatibility.
+* Enhanced admin interface styling.
+* Minor bug fixes and performance improvements.
+
 #### 1.0.3 - 31 July 2023
 * Added Corp and Unwind to theme list.
 * Improved theme activation process.
